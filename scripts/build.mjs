@@ -1,5 +1,5 @@
 // Builds system-six.css: the bitmaps in art/art.mjs as data-URI SVG custom
-// properties (a normal set on .s6, a reverse set on .s6-reverse and on
+// properties (a normal set on .s6, a dark set on .s6-dark and on
 // .s6-auto in dark mode), then the stylesheets in src/, in order.
 //
 //   node scripts/build.mjs          write system-six.css
@@ -130,8 +130,8 @@ ${densityRules()}
   --s6-paper: ${PAPER};
 ${normal}
 }
-.s6.s6-reverse,
-.s6-reverse .s6 {
+.s6.s6-dark,
+.s6-dark .s6 {
   --s6-ink: ${PAPER};
   --s6-paper: ${INK};
 ${reverse}

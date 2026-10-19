@@ -18,6 +18,9 @@
   /* a dimmed label: 1-bit screens drew it in a gray pattern; text can only
      take a colour, so it is the mix */
   --s6-dim: color-mix(in srgb, var(--s6-ink) 50%, var(--s6-paper));
+  /* the bundled faces leave two pixels between letters; the classic ones
+     left one, so take one back (no glyph touches its neighbour) */
+  --s6-tracking: calc(-1 * var(--s6-px));
 }
 /* the pixel faces draw crisp only unsmoothed: turn smoothing off where
    they are used, and leave the rest of the page's text alone */
@@ -47,4 +50,5 @@
 .s6 input[type="file"]::file-selector-button {
   -webkit-font-smoothing: none;
   font-smooth: never;
+  letter-spacing: var(--s6-tracking);
 }

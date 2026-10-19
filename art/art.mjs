@@ -294,7 +294,7 @@ export const patterns = {
 
 // Controls with a disabled state get a dimmed copy: every other ink pixel
 // in a checkerboard turns to paper, the gray a dimmed control was drawn in.
-export const dimmable = { button, checkbox, checkboxOn, radio, radioOn, tab, tabSelected, popupArrow, arrowUp, arrowDown, arrowLeft, arrowRight };
+export const dimmable = { checkbox, checkboxOn, radio, radioOn, tab, tabSelected, popupArrow, arrowUp, arrowDown, arrowLeft, arrowRight };
 
 /** @param {string[]} art */
 export function dim(art) {
