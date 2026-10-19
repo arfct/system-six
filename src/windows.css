@@ -1,8 +1,9 @@
 /* ---- windows, dialogs, alerts, the desktop ----
-   A document window: a 1px frame with a 1px shadow and a 19px title bar
-   (18px plus its rule) striped with six lines, the title on a clear band
-   in the middle, an 11px close box at the left and a zoom box at the
-   right. A modal dialog: no title bar, a double frame (1px, 1px of paper,
+   A document window: a 1px frame with a 1px shadow and an 18px title bar
+   (17 and its rule) striped with six lines 3 in from top and bottom and 1
+   in from the frame, the title on a clear band in the middle with its
+   capitals centred on the stripes, an 11px close box at the left and a
+   zoom box at the right, level with the stripes. A modal dialog: no title bar, a double frame (1px, 1px of paper,
    2px). An inactive window loses its stripes and boxes. */
 .s6 .s6-window {
   box-sizing: border-box;
@@ -17,10 +18,10 @@
   box-sizing: border-box;
   position: relative;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   flex: none;
-  height: calc(19 * var(--s6-px));
+  height: calc(18 * var(--s6-px));
   margin: 0;
   border-bottom: var(--s6-px) solid var(--s6-ink);
   background:
@@ -33,7 +34,7 @@
   padding: 0 calc(6 * var(--s6-px));
   background: var(--s6-paper);
   font: inherit;
-  line-height: calc(18 * var(--s6-px));
+  line-height: calc(16 * var(--s6-px));
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;

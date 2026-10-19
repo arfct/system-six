@@ -20,6 +20,7 @@
   --s6-r-tab: calc(4 * var(--s6-px));
   --s6-r-window: calc(5 * var(--s6-px));
   --s6-track: color-mix(in srgb, var(--s6-ink) 18%, var(--s6-paper));
+  --s6-tracking: normal;
 }
 @supports (corner-shape: squircle) {
   :is(.s6.s6-smooth, .s6-smooth .s6) {
@@ -108,8 +109,9 @@
   ):is(:disabled, [aria-disabled="true"]),
 :is(.s6.s6-smooth, .s6-smooth .s6) input[type="file"]:disabled::file-selector-button {
   border-image: none;
-  border-color: var(--s6-dim);
+  border-color: var(--s6-ink);
   box-shadow: none;
+  color: var(--s6-dim);
 }
 
 /* checkboxes and radios: drawn with borders and gradients. Every state

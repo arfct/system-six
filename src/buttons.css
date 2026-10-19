@@ -52,7 +52,8 @@
   ) {
   border-image-source: var(--s6-art-button-default-pressed);
 }
-/* dimmed: a gray frame and a gray label */
+/* dimmed: the frame stays solid and only the label goes gray, as a dimmed
+   button was drawn; a disabled default button loses its ring */
 .s6
 :where(
   button:not(.s6-bare, .s6-close, .s6-zoom, [role="tab"], [role="menuitem"], [role="menuitemcheckbox"], [role="menuitemradio"], [role="option"]),
@@ -60,7 +61,7 @@
   input:is([type="button"], [type="submit"], [type="reset"])
 ):is(:disabled, [aria-disabled="true"]),
 .s6 input[type="file"]:disabled::file-selector-button {
-  border-image: var(--s6-art-button-dim) 5 fill / calc(5 * var(--s6-px));
+  border-image: var(--s6-art-button) 5 fill / calc(5 * var(--s6-px));
   color: var(--s6-dim);
 }
 .s6 :where(button:not(.s6-bare), .s6-button):focus-visible {

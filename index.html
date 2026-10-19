@@ -12,6 +12,7 @@
   body {
     margin: 0;
     -webkit-font-smoothing: none;
+    letter-spacing: var(--s6-tracking);
     min-height: 100vh;
     padding: 0 0 calc(40 * var(--s6-px));
     font: var(--s6-font-app);
@@ -26,16 +27,12 @@
     padding: 0 calc(16 * var(--s6-px));
   }
   .s6-window-body { padding: calc(14 * var(--s6-px)) calc(16 * var(--s6-px)); }
-  .note { margin: 0 0 calc(12 * var(--s6-px)); font: var(--s6-font-small); }
   .row { display: flex; flex-wrap: wrap; align-items: center; gap: calc(12 * var(--s6-px)) calc(20 * var(--s6-px)); margin: calc(10 * var(--s6-px)) 0; }
   .col { display: grid; gap: calc(6 * var(--s6-px)); align-content: start; }
   .label { font: var(--s6-font-small); }
   .specimen { display: grid; grid-template-columns: calc(120 * var(--s6-px)) 1fr; gap: calc(6 * var(--s6-px)) calc(12 * var(--s6-px)); align-items: baseline; }
   .swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(calc(80 * var(--s6-px)), 1fr)); gap: calc(12 * var(--s6-px)); }
   .swatch { height: calc(48 * var(--s6-px)); border: var(--s6-px) solid var(--s6-ink); }
-  table.sizes { border-collapse: collapse; font: var(--s6-font-small); }
-  table.sizes td, table.sizes th { padding: calc(2 * var(--s6-px)) calc(12 * var(--s6-px)) calc(2 * var(--s6-px)) 0; text-align: left; }
-  table.sizes th { font: var(--s6-font-system); }
   .stage { display: flex; gap: calc(24 * var(--s6-px)); flex-wrap: wrap; align-items: flex-start; }
   .menu-stage { display: grid; align-items: start; }
   .menu-stage .s6-menu { margin-left: calc(6 * var(--s6-px)); margin-top: calc(-1 * var(--s6-px)); justify-self: start; }
@@ -60,24 +57,22 @@
   <section class="s6-window">
     <header class="s6-titlebar"><button class="s6-close" aria-label="Close"></button><h1 class="s6-title">system-six</h1><button class="s6-zoom" aria-label="Zoom"></button></header>
     <div class="s6-window-body">
-      <p>Black-and-white 1-bit desktop components in plain CSS. Put <code>class="s6"</code> on a container and the controls inside it draw in ink and paper, at the pixel sizes of the 1980s originals. <b>Sharp</b> draws them as pixel art; <b>smooth</b> (<code>s6-smooth</code>) keeps the strokes, frames, and shadows as vectors with squircle corners.</p>
       <div class="row">
         <label class="s6-check"><input type="radio" name="variant" value="sharp" checked> Sharp</label>
         <label class="s6-check"><input type="radio" name="variant" value="smooth"> Smooth</label>
-        <label class="s6-check"><input type="checkbox" id="reverse"> Reverse video</label>
+        <label class="s6-check"><input type="checkbox" id="dark"> Dark mode</label>
       </div>
-      <p class="note" id="scale-note">Every part draws at the original's physical size: one original pixel is 1/72 inch, set as the nearest whole number of this screen's pixels.</p>
     </div>
   </section>
 
   <section class="s6-window">
     <header class="s6-titlebar"><button class="s6-close" aria-label="Close"></button><h2 class="s6-title">Type</h2></header>
     <div class="s6-window-body specimen">
-      <span class="label">system 16/16 bold</span><span class="s6-system">The quick brown fox jumps over the lazy dog 0123456789</span>
-      <span class="label">app 16/16</span><span class="s6-app">The quick brown fox jumps over the lazy dog 0123456789</span>
-      <span class="label">small 8/10</span><span class="s6-small">The quick brown fox jumps over the lazy dog 0123456789</span>
-      <span class="label">mono 16/16</span><span class="s6-mono">for (i = 0; i &lt; 10; i++) { draw(i); }</span>
-      <span class="label">mono small 8/10</span><span class="s6-mono-small">for (i = 0; i &lt; 10; i++) { draw(i); }</span>
+      <span class="label">System</span><span class="s6-system">The quick brown fox jumps over the lazy dog 0123456789</span>
+      <span class="label">App</span><span class="s6-app">The quick brown fox jumps over the lazy dog 0123456789</span>
+      <span class="label">Small</span><span class="s6-small">The quick brown fox jumps over the lazy dog 0123456789</span>
+      <span class="label">Mono</span><span class="s6-mono">for (i = 0; i &lt; 10; i++) { draw(i); }</span>
+      <span class="label">Mono small</span><span class="s6-mono-small">for (i = 0; i &lt; 10; i++) { draw(i); }</span>
     </div>
   </section>
 
@@ -102,7 +97,6 @@
   <section class="s6-window">
     <header class="s6-titlebar"><button class="s6-close" aria-label="Close"></button><h2 class="s6-title">Push buttons</h2></header>
     <div class="s6-window-body">
-      <p class="note">20 art pixels tall, 58 minimum wide. The default button's ring sits 4 outside it; use it only for the button Return triggers.</p>
       <div class="row" style="padding: calc(4 * var(--s6-px))">
         <button class="s6-default">OK</button>
         <button>Cancel</button>
@@ -139,15 +133,15 @@
   <section class="s6-window">
     <header class="s6-titlebar"><button class="s6-close" aria-label="Close"></button><h2 class="s6-title">Fields and pop-up menus</h2></header>
     <div class="s6-window-body col">
-      <p class="note">An edit field is 22 art pixels: a 16-pixel line with 3 above and below. Focus doubles the frame. A pop-up menu is the same 22, with a 1-pixel shadow outside it.</p>
       <label class="s6-field">Name: <input type="text" value="Untitled"></label>
       <label class="s6-field">Search: <input type="text" placeholder="Type a word"></label>
       <label class="s6-field">Locked: <input type="text" value="Read only" disabled></label>
       <label class="s6-field">Style: <select><option>Plain</option><option>Outline</option><option>Shadow</option></select> <select disabled><option>Disabled</option></select></label>
-      <textarea rows="4">A text area takes the application face, and scrolls with the 16px scroll bars once it overflows. Type more lines here to see them.
-Line three.
-Line four.
-Line five.</textarea>
+      <textarea rows="4">The quick brown fox jumps over the lazy dog.
+Pack my box with five dozen liquor jugs.
+Sphinx of black quartz, judge my vow.
+How vexingly quick daft zebras jump.
+The five boxing wizards jump quickly.</textarea>
       <div class="row"><input type="file"></div>
     </div>
   </section>
@@ -178,13 +172,13 @@ Line five.</textarea>
     <header class="s6-titlebar"><button class="s6-close" aria-label="Close"></button><h2 class="s6-title">Lists and tabs</h2></header>
     <div class="s6-window-body stage">
       <div class="col">
-        <span class="label">List box, 16-pixel rows</span>
+        <span class="label">List box</span>
         <ul class="s6-list" style="width: calc(180 * var(--s6-px)); height: calc(114 * var(--s6-px))">
           <li>Brushes</li><li>Bricks</li><li aria-selected="true">Canvas</li><li>Desk</li><li>Easel</li><li aria-disabled="true">Fill (unavailable)</li><li>Grid</li><li>Lasso</li><li>Marquee</li><li>Paint bucket</li><li>Pencil</li><li>Spray can</li>
         </ul>
       </div>
       <div class="col" style="flex: 1; min-width: calc(260 * var(--s6-px))">
-        <span class="label">Tabs: 18 art pixels, the open one 20 and joined to its panel</span>
+        <span class="label">Tabs</span>
         <div>
           <div class="s6-tabs" role="tablist">
             <button role="tab" aria-selected="true">General</button>
@@ -204,11 +198,11 @@ Line five.</textarea>
   <section class="s6-window">
     <header class="s6-titlebar"><button class="s6-close" aria-label="Close"></button><h2 class="s6-title">Progress, sliders, groups, rules</h2></header>
     <div class="s6-window-body col">
-      <span class="label">Progress, 12 art pixels</span>
+      <span class="label">Progress</span>
       <progress value="0.6"></progress>
-      <span class="label">Working (no value)</span>
+      <span class="label">Progress, no value</span>
       <progress></progress>
-      <span class="label">Slider, 16 art pixels</span>
+      <span class="label">Slider</span>
       <input type="range" value="30">
       <hr>
       <fieldset>
@@ -226,13 +220,13 @@ Line five.</textarea>
     <section class="s6-window" style="width: calc(300 * var(--s6-px))">
       <header class="s6-titlebar"><button class="s6-close" aria-label="Close"></button><h2 class="s6-title">Untitled</h2><button class="s6-zoom" aria-label="Zoom"></button></header>
       <div class="s6-window-body s6-scroll" style="height: calc(120 * var(--s6-px)); padding: calc(6 * var(--s6-px))">
-        <p style="width: calc(420 * var(--s6-px)); margin: 0">An active document window: stripes, a close box and a zoom box. Its body scrolls both ways with 16px scroll bars, with arrow boxes at each end and a white thumb on the gray track.</p>
-        <p style="margin: calc(8 * var(--s6-px)) 0 0">More lines.</p><p>More lines.</p><p>More lines.</p>
+        <p style="width: calc(420 * var(--s6-px)); margin: 0">The quick brown fox jumps over the lazy dog. Pack my box with five dozen liquor jugs. Sphinx of black quartz, judge my vow.</p>
+        <p style="margin: calc(8 * var(--s6-px)) 0 0">How vexingly quick daft zebras jump.</p><p>The five boxing wizards jump quickly.</p><p>Jackdaws love my big sphinx of quartz.</p>
       </div>
     </section>
     <section class="s6-window s6-inactive" style="width: calc(240 * var(--s6-px))">
       <header class="s6-titlebar"><button class="s6-close" aria-label="Close"></button><h2 class="s6-title">Inactive</h2><button class="s6-zoom" aria-label="Zoom"></button></header>
-      <div class="s6-window-body" style="padding: calc(8 * var(--s6-px))">A window behind another loses its stripes and boxes.</div>
+      <div class="s6-window-body" style="padding: calc(8 * var(--s6-px))">The quick brown fox jumps over the lazy dog.</div>
     </section>
   </div>
 
@@ -257,45 +251,17 @@ Line five.</textarea>
     </div>
   </div>
 
-  <section class="s6-window">
-    <header class="s6-titlebar"><button class="s6-close" aria-label="Close"></button><h2 class="s6-title">Sizes</h2></header>
-    <div class="s6-window-body">
-      <table class="sizes">
-        <tr><th>Part</th><th>Size, in art pixels</th></tr>
-        <tr><td>Push button</td><td>20 tall, 58 minimum wide, 10 side padding; default ring 3 thick, 1 gap, 4 outside</td></tr>
-        <tr><td>Checkbox, radio</td><td>12 × 12, 5 to the label</td></tr>
-        <tr><td>Edit field</td><td>22 tall: 1 frame, 2 air, 16 line, 2 air, 1 frame; 3 side padding</td></tr>
-        <tr><td>Pop-up menu</td><td>22 tall, as an edit field, plus 1 shadow outside; arrow 11 × 6</td></tr>
-        <tr><td>Menu bar, menu item</td><td>20; 16</td></tr>
-        <tr><td>Title bar</td><td>19 (18 and its rule); 6 stripes from 3 down; boxes 11 × 11, 8 in</td></tr>
-        <tr><td>Scroll bar, slider</td><td>16</td></tr>
-        <tr><td>Tab</td><td>18; open 20</td></tr>
-        <tr><td>Dialog frame</td><td>1 ink, 1 paper, 2 ink; 13 inside</td></tr>
-        <tr><td>Type</td><td>system 16 bold, app 16, small 8, on 16 and 10 lines</td></tr>
-      </table>
-    </div>
-  </section>
 </main>
 
 <script>
   const root = document.documentElement;
-  document.getElementById("reverse").addEventListener("change", (e) => {
-    root.classList.toggle("s6-reverse", e.target.checked);
+  document.getElementById("dark").addEventListener("change", (e) => {
+    root.classList.toggle("s6-dark", e.target.checked);
     root.style.background = e.target.checked ? "#000" : "#fff";
   });
   for (const r of document.querySelectorAll('input[name="variant"]')) {
     r.addEventListener("change", () => root.classList.toggle("s6-smooth", r.value === "smooth" && r.checked));
   }
-  // report what this screen draws: a push button is 20 art pixels tall
-  const probe = document.querySelector("button.s6-default");
-  const note = document.getElementById("scale-note");
-  const show = () => {
-    const css = probe.getBoundingClientRect().height / 20;
-    const device = Math.round(css * devicePixelRatio);
-    note.textContent = `This screen (${devicePixelRatio}× density): one original pixel is ${device} screen pixel${device === 1 ? "" : "s"}, ${+css.toFixed(3)} CSS px — ${Math.round((css / (4 / 3)) * 100)}% of the original's physical size, and always crisp.`;
-  };
-  show();
-  matchMedia(`(resolution: ${devicePixelRatio}dppx)`).addEventListener("change", show);
 </script>
 </body>
 </html>

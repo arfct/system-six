@@ -37,7 +37,7 @@ From git: `npm install github:arfct/system-six`, then import `@arfct/system-six`
 | Menu bar | `<nav class="s6-menubar">` of `<button class="s6-bare">`; `aria-expanded="true"` on the open title | 20 tall |
 | Menu | `<div class="s6-menu" role="menu">` of `role="menuitem"` buttons; `aria-checked`, `aria-disabled`, `<kbd>` for the shortcut, `role="separator"` | 16px rows, 1px shadow |
 | Tabs | `<div class="s6-tabs" role="tablist">` of `role="tab"` buttons over a `.s6-tabpanel` | 18 tall; the open tab 20, joined to the panel |
-| Window | `.s6-window` > `.s6-titlebar` (`.s6-close`, `.s6-title`, `.s6-zoom`) + `.s6-window-body`; `.s6-inactive` | title bar 19 with 6 stripes; boxes 11 × 11, 8 in |
+| Window | `.s6-window` > `.s6-titlebar` (`.s6-close`, `.s6-title`, `.s6-zoom`) + `.s6-window-body`; `.s6-inactive` | title bar 18 with 6 stripes; boxes 11 × 11, 8 in |
 | Size box | `.s6-grow` | 16 × 16 |
 | Dialog | `.s6-dialog`; `.s6-alert` adds a 32px icon column; `.s6-buttons` ends it | frame 1 ink, 1 paper, 2 ink; 13 inside |
 | Scroll bars | on `.s6-scroll`, `.s6-list`, `textarea`, list `select`s | 16 |
@@ -80,7 +80,7 @@ Two variants share every size, stroke, frame, and shadow:
   | 3× | 1.333 CSS px | 4 | 100% |
 
   Sizes in this README are in art pixels: a push button is 20 of them, 30 CSS px tall on a 2× screen.
-- Ink and paper are black and white. `.s6-reverse` swaps them, bitmaps included; `.s6-auto` swaps them when the system is in dark mode.
+- Ink and paper are black and white. `.s6-dark` is dark mode: white ink on black paper, bitmaps included. `.s6-auto` switches to it when the system is in dark mode.
 - `--s6-dim` is the gray of a dimmed label (text can't take a dither pattern, so it's the mix of ink and paper).
 
 ## Browsers
