@@ -1,8 +1,8 @@
-# system-six
+# System Six
 
 Black-and-white 1-bit desktop components in plain CSS, in the spirit of 1980s paint programs and desktops: rounded push buttons with a ring around the default, checkboxes that take an X, striped title bars, menus with 1px shadows, a gray dither desktop, and 8×8 fill patterns. Every part is drawn at the pixel dimensions of the originals, at their physical size, and stays crisp on any screen.
 
-One stylesheet, no JavaScript, no build step to use it. The preview, `index.html`, shows every component and state (`npm run preview`, then open the address it prints).
+One stylesheet, no JavaScript, no build step to use it. **[See every component and state](https://arfct.github.io/system-six/)**, or run the preview locally with `npm run preview`.
 
 ## Use
 

@@ -145,7 +145,7 @@ ${reverse.replace(/^ {2}/gm, "    ")}
   }
 }
 `;
-  const banner = `/*! system-six: black-and-white 1-bit desktop components in plain CSS.
+  const banner = `/*! System Six: black-and-white 1-bit desktop components in plain CSS.
  * https://github.com/arfct/system-six · MIT
  * Built by scripts/build.mjs from art/art.mjs and src/; edit those, not this file. */
 `;

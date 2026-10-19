@@ -1,4 +1,4 @@
-// Every bitmap in system-six, drawn as text: "#" is ink, "o" is paper, "."
+// Every bitmap in System Six, drawn as text: "#" is ink, "o" is paper, "."
 // is clear. scripts/build.mjs turns each into a data-URI SVG (one rect per
 // run, crisp edges) in a normal set and a reverse set, plus a dimmed copy of
 // the controls that have a disabled state. One character is one pixel.
