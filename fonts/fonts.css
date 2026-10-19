@@ -1,0 +1,39 @@
+/* The bundled pixel faces: Pixel Operator by Jayvee Enaguas, CC0 1.0
+   (fonts/LICENSE-pixel-operator.txt). Each renders one font pixel per CSS
+   pixel at its design size: the 16px faces at 16px, the "8" faces at 8px. */
+@font-face {
+  font-family: "Pixel Operator";
+  font-weight: 400;
+  font-display: swap;
+  src: url(pixel-operator.woff2) format("woff2");
+}
+@font-face {
+  font-family: "Pixel Operator";
+  font-weight: 700;
+  font-display: swap;
+  src: url(pixel-operator-bold.woff2) format("woff2");
+}
+@font-face {
+  font-family: "Pixel Operator 8";
+  font-weight: 400;
+  font-display: swap;
+  src: url(pixel-operator-8.woff2) format("woff2");
+}
+@font-face {
+  font-family: "Pixel Operator 8";
+  font-weight: 700;
+  font-display: swap;
+  src: url(pixel-operator-8-bold.woff2) format("woff2");
+}
+@font-face {
+  font-family: "Pixel Operator Mono";
+  font-weight: 400;
+  font-display: swap;
+  src: url(pixel-operator-mono.woff2) format("woff2");
+}
+@font-face {
+  font-family: "Pixel Operator Mono 8";
+  font-weight: 400;
+  font-display: swap;
+  src: url(pixel-operator-mono-8.woff2) format("woff2");
+}

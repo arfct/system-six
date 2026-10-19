@@ -1,0 +1,108 @@
+/* ---- windows, dialogs, alerts, the desktop ----
+   A document window: a 1px frame with a 1px shadow and a 19px title bar
+   (18px plus its rule) striped with six lines, the title on a clear band
+   in the middle, an 11px close box at the left and a zoom box at the
+   right. A modal dialog: no title bar, a double frame (1px, 1px of paper,
+   2px). An inactive window loses its stripes and boxes. */
+.s6 .s6-window {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  border: var(--s6-px) solid var(--s6-ink);
+  background: var(--s6-paper);
+  box-shadow: var(--s6-px) var(--s6-px) 0 var(--s6-ink);
+  color: var(--s6-ink);
+}
+.s6 .s6-titlebar {
+  box-sizing: border-box;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  height: calc(19 * var(--s6-px));
+  margin: 0;
+  border-bottom: var(--s6-px) solid var(--s6-ink);
+  background:
+    repeating-linear-gradient(to bottom, var(--s6-ink) 0 var(--s6-px), transparent var(--s6-px) calc(2 * var(--s6-px))) var(--s6-px) calc(3 * var(--s6-px)) /
+    calc(100% - 2 * var(--s6-px)) calc(11 * var(--s6-px)) no-repeat;
+  font: var(--s6-font-system);
+}
+.s6 .s6-titlebar .s6-title {
+  margin: 0;
+  padding: 0 calc(6 * var(--s6-px));
+  background: var(--s6-paper);
+  font: inherit;
+  line-height: calc(18 * var(--s6-px));
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.s6 .s6-titlebar :is(.s6-close, .s6-zoom) {
+  box-sizing: border-box;
+  position: absolute;
+  top: calc(3 * var(--s6-px));
+  width: calc(11 * var(--s6-px));
+  height: calc(11 * var(--s6-px));
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: var(--s6-art-close) 0 0 / 100% 100% no-repeat;
+  box-shadow: 0 0 0 var(--s6-px) var(--s6-paper);
+  cursor: default;
+}
+.s6 .s6-titlebar .s6-close {
+  left: calc(8 * var(--s6-px));
+}
+.s6 .s6-titlebar .s6-zoom {
+  right: calc(8 * var(--s6-px));
+  background-image: var(--s6-art-zoom);
+}
+.s6 .s6-titlebar :is(.s6-close, .s6-zoom):active {
+  background: var(--s6-ink);
+}
+.s6 .s6-inactive > .s6-titlebar {
+  background: none;
+}
+.s6 .s6-inactive > .s6-titlebar :is(.s6-close, .s6-zoom) {
+  visibility: hidden;
+}
+.s6 .s6-window-body {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+}
+/* the size box, at the bottom-right corner of a window's body */
+.s6 .s6-grow {
+  box-sizing: border-box;
+  width: calc(16 * var(--s6-px));
+  height: calc(16 * var(--s6-px));
+  border: solid var(--s6-ink);
+  border-width: var(--s6-px) 0 0 var(--s6-px);
+  background: var(--s6-paper) var(--s6-art-grow) no-repeat calc(1 * var(--s6-px)) calc(1 * var(--s6-px)) / calc(15 * var(--s6-px)) calc(15 * var(--s6-px));
+}
+.s6 .s6-dialog {
+  box-sizing: border-box;
+  padding: calc(13 * var(--s6-px));
+  border: var(--s6-px) solid var(--s6-ink);
+  background: var(--s6-paper);
+  box-shadow:
+    inset 0 0 0 var(--s6-px) var(--s6-paper),
+    inset 0 0 0 calc(3 * var(--s6-px)) var(--s6-ink);
+  color: var(--s6-ink);
+  font: var(--s6-font-system);
+}
+/* an alert: a 32px icon at the left, the message, the buttons */
+.s6 .s6-alert {
+  display: grid;
+  grid-template-columns: calc(32 * var(--s6-px)) 1fr;
+  gap: calc(12 * var(--s6-px)) calc(16 * var(--s6-px));
+  align-items: start;
+}
+.s6 .s6-alert > .s6-buttons {
+  grid-column: 1 / -1;
+}
+.s6 .s6-desktop {
+  background: var(--s6-pattern-gray) 0 0 / calc(8 * var(--s6-px)) calc(8 * var(--s6-px));
+}

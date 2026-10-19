@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="en" class="s6">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>system-six</title>
+<link rel="stylesheet" href="fonts/fonts.css">
+<link rel="stylesheet" href="system-six.css">
+<style>
+  /* the preview's own layout; everything else is system-six */
+  html { background: #fff; }
+  body {
+    margin: 0;
+    -webkit-font-smoothing: none;
+    min-height: 100vh;
+    padding: 0 0 calc(40 * var(--s6-px));
+    font: var(--s6-font-app);
+    color: var(--s6-ink);
+  }
+  .bar { position: sticky; top: 0; z-index: 5; }
+  main {
+    display: grid;
+    gap: calc(24 * var(--s6-px));
+    max-width: calc(760 * var(--s6-px));
+    margin: calc(24 * var(--s6-px)) auto 0;
+    padding: 0 calc(16 * var(--s6-px));
+  }
+  .s6-window-body { padding: calc(14 * var(--s6-px)) calc(16 * var(--s6-px)); }
+  .note { margin: 0 0 calc(12 * var(--s6-px)); font: var(--s6-font-small); }
+  .row { display: flex; flex-wrap: wrap; align-items: center; gap: calc(12 * var(--s6-px)) calc(20 * var(--s6-px)); margin: calc(10 * var(--s6-px)) 0; }
+  .col { display: grid; gap: calc(6 * var(--s6-px)); align-content: start; }
+  .label { font: var(--s6-font-small); }
+  .specimen { display: grid; grid-template-columns: calc(120 * var(--s6-px)) 1fr; gap: calc(6 * var(--s6-px)) calc(12 * var(--s6-px)); align-items: baseline; }
+  .swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(calc(80 * var(--s6-px)), 1fr)); gap: calc(12 * var(--s6-px)); }
+  .swatch { height: calc(48 * var(--s6-px)); border: var(--s6-px) solid var(--s6-ink); }
+  table.sizes { border-collapse: collapse; font: var(--s6-font-small); }
+  table.sizes td, table.sizes th { padding: calc(2 * var(--s6-px)) calc(12 * var(--s6-px)) calc(2 * var(--s6-px)) 0; text-align: left; }
+  table.sizes th { font: var(--s6-font-system); }
+  .stage { display: flex; gap: calc(24 * var(--s6-px)); flex-wrap: wrap; align-items: flex-start; }
+  .menu-stage { display: grid; align-items: start; }
+  .menu-stage .s6-menu { margin-left: calc(6 * var(--s6-px)); margin-top: calc(-1 * var(--s6-px)); justify-self: start; }
+  .icon { width: calc(32 * var(--s6-px)); height: calc(32 * var(--s6-px)); }
+  code { font: var(--s6-font-mono); -webkit-font-smoothing: none; }
+  .icon-note { display: grid; place-items: center; border: var(--s6-px) solid var(--s6-ink); font: var(--s6-font-system); }
+</style>
+</head>
+<body class="s6-desktop">
+
+<div class="bar">
+  <nav class="s6-menubar" aria-label="Preview">
+    <button class="s6-bare">system-six</button>
+    <button class="s6-bare s6-open" aria-expanded="true">File</button>
+    <button class="s6-bare">Edit</button>
+    <button class="s6-bare">View</button>
+  </nav>
+</div>
+
+<main>
+
+  <section class="s6-window">
+    <header class="s6-titlebar"><button class="s6-close" aria-label="Close"></button><h1 class="s6-title">system-six</h1><button class="s6-zoom" aria-label="Zoom"></button></header>
+    <div class="s6-window-body">
+      <p>Black-and-white 1-bit desktop components in plain CSS. Put <code>class="s6"</code> on a container and the controls inside it draw in ink and paper, at the pixel sizes of the 1980s originals.</p>
+      <div class="row">
+        <label class="s6-check"><input type="checkbox" id="reverse"> Reverse video</label>
+        <label class="s6-check"><input type="radio" name="scale" value="1" checked> 1×</label>
+        <label class="s6-check"><input type="radio" name="scale" value="2"> 2×</label>
+        <label class="s6-check"><input type="radio" name="scale" value="3"> 3×</label>
+      </div>
+      <p class="note">One art pixel is <code>--s6-px</code> (1px). Whole multiples stay crisp.</p>
+    </div>
+  </section>
+
+  <section class="s6-window">
+    <header class="s6-titlebar"><button class="s6-close" aria-label="Close"></button><h2 class="s6-title">Type</h2></header>
+    <div class="s6-window-body specimen">
+      <span class="label">system 16/16 bold</span><span class="s6-system">The quick brown fox jumps over the lazy dog 0123456789</span>
+      <span class="label">app 16/16</span><span class="s6-app">The quick brown fox jumps over the lazy dog 0123456789</span>
+      <span class="label">small 8/10</span><span class="s6-small">The quick brown fox jumps over the lazy dog 0123456789</span>
+      <span class="label">mono 16/16</span><span class="s6-mono">for (i = 0; i &lt; 10; i++) { draw(i); }</span>
+      <span class="label">mono small 8/10</span><span class="s6-mono-small">for (i = 0; i &lt; 10; i++) { draw(i); }</span>
+    </div>
+  </section>
+
+  <section class="s6-window">
+    <header class="s6-titlebar"><button class="s6-close" aria-label="Close"></button><h2 class="s6-title">Patterns</h2></header>
+    <div class="s6-window-body">
+      <div class="swatches">
+        <div class="col"><div class="swatch s6-fill-gray"></div><span class="label">gray</span></div>
+        <div class="col"><div class="swatch s6-fill-light"></div><span class="label">light</span></div>
+        <div class="col"><div class="swatch s6-fill-dark"></div><span class="label">dark</span></div>
+        <div class="col"><div class="swatch s6-fill-dots"></div><span class="label">dots</span></div>
+        <div class="col"><div class="swatch s6-fill-diagonal"></div><span class="label">diagonal</span></div>
+        <div class="col"><div class="swatch s6-fill-bricks"></div><span class="label">bricks</span></div>
+        <div class="col"><div class="swatch s6-fill-grid"></div><span class="label">grid</span></div>
+        <div class="col"><div class="swatch s6-fill-zigzag"></div><span class="label">zigzag</span></div>
+        <div class="col"><div class="swatch s6-fill-weave"></div><span class="label">weave</span></div>
+        <div class="col"><div class="swatch s6-fill-scales"></div><span class="label">scales</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="s6-window">
+    <header class="s6-titlebar"><button class="s6-close" aria-label="Close"></button><h2 class="s6-title">Push buttons</h2></header>
+    <div class="s6-window-body">
+      <p class="note">20px tall, 58px minimum. The default button's ring sits 4px outside it; use it only for the button Return triggers.</p>
+      <div class="row" style="padding: calc(4 * var(--s6-px))">
+        <button class="s6-default">OK</button>
+        <button>Cancel</button>
+        <button class="s6-pressed">Pressed</button>
+        <button class="s6-default s6-pressed">Default</button>
+        <button disabled>Disabled</button>
+        <button>A longer label</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="s6-window">
+    <header class="s6-titlebar"><button class="s6-close" aria-label="Close"></button><h2 class="s6-title">Checkboxes and radio buttons</h2></header>
+    <div class="s6-window-body stage">
+      <div class="col">
+        <label class="s6-check"><input type="checkbox"> Off</label>
+        <label class="s6-check"><input type="checkbox" checked> On</label>
+        <label class="s6-check"><input type="checkbox" class="s6-pressed"> Pressed</label>
+        <label class="s6-check"><input type="checkbox" checked class="s6-pressed"> On, pressed</label>
+        <label class="s6-check"><input type="checkbox" disabled> Disabled</label>
+        <label class="s6-check"><input type="checkbox" checked disabled> On, disabled</label>
+      </div>
+      <div class="col">
+        <label class="s6-check"><input type="radio" name="r1"> Off</label>
+        <label class="s6-check"><input type="radio" name="r1" checked> On</label>
+        <label class="s6-check"><input type="radio" class="s6-pressed"> Pressed</label>
+        <label class="s6-check"><input type="radio" checked class="s6-pressed"> On, pressed</label>
+        <label class="s6-check"><input type="radio" disabled> Disabled</label>
+        <label class="s6-check"><input type="radio" checked disabled> On, disabled</label>
+      </div>
+    </div>
+  </section>
+
+  <section class="s6-window">
+    <header class="s6-titlebar"><button class="s6-close" aria-label="Close"></button><h2 class="s6-title">Fields and pop-up menus</h2></header>
+    <div class="s6-window-body col">
+      <p class="note">An edit field is 22px: a 16px line with 3px above and below. Focus doubles the frame. A pop-up menu is 19px with a 1px shadow.</p>
+      <label class="s6-field">Name: <input type="text" value="Untitled"></label>
+      <label class="s6-field">Search: <input type="text" placeholder="Type a word"></label>
+      <label class="s6-field">Locked: <input type="text" value="Read only" disabled></label>
+      <label class="s6-field">Style: <select><option>Plain</option><option>Outline</option><option>Shadow</option></select> <select disabled><option>Disabled</option></select></label>
+      <textarea rows="4">A text area takes the application face, and scrolls with the 16px scroll bars once it overflows. Type more lines here to see them.
+Line three.
+Line four.
+Line five.</textarea>
+      <div class="row"><input type="file"></div>
+    </div>
+  </section>
+
+  <section class="s6-window">
+    <header class="s6-titlebar"><button class="s6-close" aria-label="Close"></button><h2 class="s6-title">Menus</h2></header>
+    <div class="s6-window-body">
+      <div class="menu-stage">
+        <nav class="s6-menubar" aria-label="Example">
+          <button class="s6-bare">Edit</button>
+          <button class="s6-bare s6-open" aria-expanded="true">Style</button>
+          <button class="s6-bare">Goodies</button>
+        </nav>
+        <div class="s6-menu" role="menu" style="margin-left: calc(50 * var(--s6-px))">
+          <button role="menuitemcheckbox" aria-checked="true">Plain <kbd>⇧P</kbd></button>
+          <button role="menuitemcheckbox" aria-checked="false" class="s6-chosen">Bold <kbd>⇧B</kbd></button>
+          <button role="menuitemcheckbox" aria-checked="false">Italic <kbd>⇧I</kbd></button>
+          <button role="menuitem" aria-disabled="true">Outline</button>
+          <div role="separator"></div>
+          <button role="menuitem">Align left</button>
+          <button role="menuitem">Align centre</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="s6-window">
+    <header class="s6-titlebar"><button class="s6-close" aria-label="Close"></button><h2 class="s6-title">Lists and tabs</h2></header>
+    <div class="s6-window-body stage">
+      <div class="col">
+        <span class="label">List box, 16px rows</span>
+        <ul class="s6-list" style="width: calc(180 * var(--s6-px)); height: calc(114 * var(--s6-px))">
+          <li>Brushes</li><li>Bricks</li><li aria-selected="true">Canvas</li><li>Desk</li><li>Easel</li><li aria-disabled="true">Fill (unavailable)</li><li>Grid</li><li>Lasso</li><li>Marquee</li><li>Paint bucket</li><li>Pencil</li><li>Spray can</li>
+        </ul>
+      </div>
+      <div class="col" style="flex: 1; min-width: calc(260 * var(--s6-px))">
+        <span class="label">Tabs: 18px, the open one 20px and joined to its panel</span>
+        <div>
+          <div class="s6-tabs" role="tablist">
+            <button role="tab" aria-selected="true">General</button>
+            <button role="tab" aria-selected="false">Brushes</button>
+            <button role="tab" aria-selected="false">Patterns</button>
+            <button role="tab" aria-selected="false" disabled>Locked</button>
+          </div>
+          <div class="s6-tabpanel" role="tabpanel" style="padding: calc(12 * var(--s6-px)); display: grid; gap: calc(8 * var(--s6-px))">
+            <label class="s6-check"><input type="checkbox" checked> Show the grid</label>
+            <label class="s6-field">Grid size: <input type="number" value="8" style="max-width: calc(60 * var(--s6-px))"></label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="s6-window">
+    <header class="s6-titlebar"><button class="s6-close" aria-label="Close"></button><h2 class="s6-title">Progress, sliders, groups, rules</h2></header>
+    <div class="s6-window-body col">
+      <span class="label">Progress, 12px</span>
+      <progress value="0.6"></progress>
+      <span class="label">Working (no value)</span>
+      <progress></progress>
+      <span class="label">Slider, 16px</span>
+      <input type="range" value="30">
+      <hr>
+      <fieldset>
+        <legend>Brush shape</legend>
+        <div class="row">
+          <label class="s6-check"><input type="radio" name="b" checked> Round</label>
+          <label class="s6-check"><input type="radio" name="b"> Square</label>
+          <label class="s6-check"><input type="radio" name="b"> Slash</label>
+        </div>
+      </fieldset>
+    </div>
+  </section>
+
+  <div class="stage">
+    <section class="s6-window" style="width: calc(300 * var(--s6-px))">
+      <header class="s6-titlebar"><button class="s6-close" aria-label="Close"></button><h2 class="s6-title">Untitled</h2><button class="s6-zoom" aria-label="Zoom"></button></header>
+      <div class="s6-window-body s6-scroll" style="height: calc(120 * var(--s6-px)); padding: calc(6 * var(--s6-px))">
+        <p style="width: calc(420 * var(--s6-px)); margin: 0">An active document window: stripes, a close box and a zoom box. Its body scrolls both ways with 16px scroll bars, with arrow boxes at each end and a white thumb on the gray track.</p>
+        <p style="margin: calc(8 * var(--s6-px)) 0 0">More lines.</p><p>More lines.</p><p>More lines.</p>
+      </div>
+    </section>
+    <section class="s6-window s6-inactive" style="width: calc(240 * var(--s6-px))">
+      <header class="s6-titlebar"><button class="s6-close" aria-label="Close"></button><h2 class="s6-title">Inactive</h2><button class="s6-zoom" aria-label="Zoom"></button></header>
+      <div class="s6-window-body" style="padding: calc(8 * var(--s6-px))">A window behind another loses its stripes and boxes.</div>
+    </section>
+  </div>
+
+  <div class="stage">
+    <div class="s6-dialog" role="dialog" aria-label="Save" style="width: calc(320 * var(--s6-px))">
+      <div class="col">
+        <label class="s6-field">Save as: <input type="text" value="Untitled"></label>
+        <label class="s6-check"><input type="checkbox"> Keep a backup</label>
+      </div>
+      <div class="s6-buttons" style="margin-top: calc(12 * var(--s6-px))">
+        <button>Cancel</button>
+        <button class="s6-default">Save</button>
+      </div>
+    </div>
+    <div class="s6-dialog s6-alert" role="alertdialog" aria-label="Revert" style="width: calc(320 * var(--s6-px))">
+      <div class="icon icon-note">!</div>
+      <p style="margin: 0">Revert to the last saved version? Changes since then will be lost.</p>
+      <div class="s6-buttons">
+        <button>Cancel</button>
+        <button class="s6-default">Revert</button>
+      </div>
+    </div>
+  </div>
+
+  <section class="s6-window">
+    <header class="s6-titlebar"><button class="s6-close" aria-label="Close"></button><h2 class="s6-title">Sizes</h2></header>
+    <div class="s6-window-body">
+      <table class="sizes">
+        <tr><th>Part</th><th>Size, in --s6-px</th></tr>
+        <tr><td>Push button</td><td>20 tall, 58 minimum wide, 10 side padding; default ring 3 thick, 1 gap, 4 outside</td></tr>
+        <tr><td>Checkbox, radio</td><td>12 × 12, 5 to the label</td></tr>
+        <tr><td>Edit field</td><td>22 tall: 1 frame, 2 air, 16 line, 2 air, 1 frame; 3 side padding</td></tr>
+        <tr><td>Pop-up menu</td><td>19 tall plus 1 shadow; arrow 11 × 6</td></tr>
+        <tr><td>Menu bar, menu item</td><td>20; 16</td></tr>
+        <tr><td>Title bar</td><td>19 (18 and its rule); 6 stripes from 3 down; boxes 11 × 11, 8 in</td></tr>
+        <tr><td>Scroll bar, slider</td><td>16</td></tr>
+        <tr><td>Tab</td><td>18; open 20</td></tr>
+        <tr><td>Dialog frame</td><td>1 ink, 1 paper, 2 ink; 13 inside</td></tr>
+        <tr><td>Type</td><td>system 16 bold, app 16, small 8, on 16 and 10 lines</td></tr>
+      </table>
+    </div>
+  </section>
+</main>
+
+<script>
+  const root = document.documentElement;
+  document.getElementById("reverse").addEventListener("change", (e) => {
+    root.classList.toggle("s6-reverse", e.target.checked);
+    root.style.background = e.target.checked ? "#000" : "#fff";
+  });
+  for (const r of document.querySelectorAll('input[name="scale"]')) {
+    r.addEventListener("change", () => root.style.setProperty("--s6-px", `${r.value}px`));
+  }
+</script>
+</body>
+</html>

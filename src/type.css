@@ -1,0 +1,24 @@
+/* ---- type ---- */
+.s6 .s6-system {
+  font: var(--s6-font-system);
+}
+.s6 .s6-app {
+  font: var(--s6-font-app);
+}
+.s6 .s6-small {
+  font: var(--s6-font-small);
+}
+.s6 .s6-mono {
+  font: var(--s6-font-mono);
+}
+.s6 .s6-mono-small {
+  font: var(--s6-font-mono-small);
+}
+.s6 ::selection {
+  background: var(--s6-ink);
+  color: var(--s6-paper);
+}
+.s6 :focus-visible {
+  outline: var(--s6-px) dotted var(--s6-ink);
+  outline-offset: var(--s6-px);
+}
