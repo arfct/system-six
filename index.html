@@ -60,8 +60,10 @@
   <section class="s6-window">
     <header class="s6-titlebar"><button class="s6-close" aria-label="Close"></button><h1 class="s6-title">system-six</h1><button class="s6-zoom" aria-label="Zoom"></button></header>
     <div class="s6-window-body">
-      <p>Black-and-white 1-bit desktop components in plain CSS. Put <code>class="s6"</code> on a container and the controls inside it draw in ink and paper, at the pixel sizes of the 1980s originals.</p>
+      <p>Black-and-white 1-bit desktop components in plain CSS. Put <code>class="s6"</code> on a container and the controls inside it draw in ink and paper, at the pixel sizes of the 1980s originals. <b>Sharp</b> draws them as pixel art; <b>smooth</b> (<code>s6-smooth</code>) keeps the strokes, frames, and shadows as vectors with squircle corners.</p>
       <div class="row">
+        <label class="s6-check"><input type="radio" name="variant" value="sharp" checked> Sharp</label>
+        <label class="s6-check"><input type="radio" name="variant" value="smooth"> Smooth</label>
         <label class="s6-check"><input type="checkbox" id="reverse"> Reverse video</label>
       </div>
       <p class="note" id="scale-note">Every part draws at the original's physical size: one original pixel is 1/72 inch, set as the nearest whole number of this screen's pixels.</p>
@@ -100,7 +102,7 @@
   <section class="s6-window">
     <header class="s6-titlebar"><button class="s6-close" aria-label="Close"></button><h2 class="s6-title">Push buttons</h2></header>
     <div class="s6-window-body">
-      <p class="note">20px tall, 58px minimum. The default button's ring sits 4px outside it; use it only for the button Return triggers.</p>
+      <p class="note">20 art pixels tall, 58 minimum wide. The default button's ring sits 4 outside it; use it only for the button Return triggers.</p>
       <div class="row" style="padding: calc(4 * var(--s6-px))">
         <button class="s6-default">OK</button>
         <button>Cancel</button>
@@ -137,7 +139,7 @@
   <section class="s6-window">
     <header class="s6-titlebar"><button class="s6-close" aria-label="Close"></button><h2 class="s6-title">Fields and pop-up menus</h2></header>
     <div class="s6-window-body col">
-      <p class="note">An edit field is 22px: a 16px line with 3px above and below. Focus doubles the frame. A pop-up menu is 19px with a 1px shadow.</p>
+      <p class="note">An edit field is 22 art pixels: a 16-pixel line with 3 above and below. Focus doubles the frame. A pop-up menu is 19 with a 1-pixel shadow.</p>
       <label class="s6-field">Name: <input type="text" value="Untitled"></label>
       <label class="s6-field">Search: <input type="text" placeholder="Type a word"></label>
       <label class="s6-field">Locked: <input type="text" value="Read only" disabled></label>
@@ -176,13 +178,13 @@ Line five.</textarea>
     <header class="s6-titlebar"><button class="s6-close" aria-label="Close"></button><h2 class="s6-title">Lists and tabs</h2></header>
     <div class="s6-window-body stage">
       <div class="col">
-        <span class="label">List box, 16px rows</span>
+        <span class="label">List box, 16-pixel rows</span>
         <ul class="s6-list" style="width: calc(180 * var(--s6-px)); height: calc(114 * var(--s6-px))">
           <li>Brushes</li><li>Bricks</li><li aria-selected="true">Canvas</li><li>Desk</li><li>Easel</li><li aria-disabled="true">Fill (unavailable)</li><li>Grid</li><li>Lasso</li><li>Marquee</li><li>Paint bucket</li><li>Pencil</li><li>Spray can</li>
         </ul>
       </div>
       <div class="col" style="flex: 1; min-width: calc(260 * var(--s6-px))">
-        <span class="label">Tabs: 18px, the open one 20px and joined to its panel</span>
+        <span class="label">Tabs: 18 art pixels, the open one 20 and joined to its panel</span>
         <div>
           <div class="s6-tabs" role="tablist">
             <button role="tab" aria-selected="true">General</button>
@@ -202,11 +204,11 @@ Line five.</textarea>
   <section class="s6-window">
     <header class="s6-titlebar"><button class="s6-close" aria-label="Close"></button><h2 class="s6-title">Progress, sliders, groups, rules</h2></header>
     <div class="s6-window-body col">
-      <span class="label">Progress, 12px</span>
+      <span class="label">Progress, 12 art pixels</span>
       <progress value="0.6"></progress>
       <span class="label">Working (no value)</span>
       <progress></progress>
-      <span class="label">Slider, 16px</span>
+      <span class="label">Slider, 16 art pixels</span>
       <input type="range" value="30">
       <hr>
       <fieldset>
@@ -259,7 +261,7 @@ Line five.</textarea>
     <header class="s6-titlebar"><button class="s6-close" aria-label="Close"></button><h2 class="s6-title">Sizes</h2></header>
     <div class="s6-window-body">
       <table class="sizes">
-        <tr><th>Part</th><th>Size, in --s6-px</th></tr>
+        <tr><th>Part</th><th>Size, in art pixels</th></tr>
         <tr><td>Push button</td><td>20 tall, 58 minimum wide, 10 side padding; default ring 3 thick, 1 gap, 4 outside</td></tr>
         <tr><td>Checkbox, radio</td><td>12 × 12, 5 to the label</td></tr>
         <tr><td>Edit field</td><td>22 tall: 1 frame, 2 air, 16 line, 2 air, 1 frame; 3 side padding</td></tr>
@@ -281,6 +283,9 @@ Line five.</textarea>
     root.classList.toggle("s6-reverse", e.target.checked);
     root.style.background = e.target.checked ? "#000" : "#fff";
   });
+  for (const r of document.querySelectorAll('input[name="variant"]')) {
+    r.addEventListener("change", () => root.classList.toggle("s6-smooth", r.value === "smooth" && r.checked));
+  }
   // report what this screen draws: a push button is 20 art pixels tall
   const probe = document.querySelector("button.s6-default");
   const note = document.getElementById("scale-note");

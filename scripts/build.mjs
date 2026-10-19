@@ -8,7 +8,34 @@
 import { readFileSync, writeFileSync } from "node:fs";
 import * as art from "../art/art.mjs";
 
-const SOURCES = ["tokens.css", "type.css", "buttons.css", "choices.css", "fields.css", "menus.css", "lists.css", "tabs.css", "windows.css", "misc.css"];
+const SOURCES = [
+  "tokens.css",
+  "type.css",
+  "buttons.css",
+  "choices.css",
+  "fields.css",
+  "menus.css",
+  "lists.css",
+  "tabs.css",
+  "windows.css",
+  "misc.css",
+  "smooth.css",
+];
+
+// The smooth variant's glyphs: the same shapes as the bitmaps, as vectors.
+// Each is [width, height, draw(ink, paper)] in art pixels; "-pressed"
+// copies draw in paper, for an inverted highlight.
+/** @type {Record<string, [number, number, (ink: string, paper: string) => string]>} */
+const VECTORS = {
+  "popup-arrow": [11, 6, (ink) => `<path fill='${ink}' d='M0 0h11L5.5 6z'/>`],
+  check: [9, 8, (ink) => `<path fill='none' stroke='${ink}' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round' d='M1 4.5l2.5 2.5L8 1.5'/>`],
+  "arrow-up": [11, 9, (ink, paper) => `<path fill='${paper}' stroke='${ink}' stroke-linejoin='round' d='M5.5.5l5 5h-3v3h-4v-3h-3z'/>`],
+  "arrow-down": [11, 9, (ink, paper) => `<path fill='${paper}' stroke='${ink}' stroke-linejoin='round' d='M5.5 8.5l5-5h-3v-3h-4v3h-3z'/>`],
+  "arrow-left": [9, 11, (ink, paper) => `<path fill='${paper}' stroke='${ink}' stroke-linejoin='round' d='M.5 5.5l5-5v3h3v4h-3v3z'/>`],
+  "arrow-right": [9, 11, (ink, paper) => `<path fill='${paper}' stroke='${ink}' stroke-linejoin='round' d='M8.5 5.5l-5-5v3h-3v4h3v3z'/>`],
+  zoom: [9, 9, (ink) => `<rect x='1.5' y='1.5' width='5' height='5' fill='none' stroke='${ink}'/>`],
+};
+const PRESSED_VECTORS = ["popup-arrow", "check"];
 
 const INK = "#000";
 const PAPER = "#fff";
@@ -77,11 +104,18 @@ function bitmaps() {
   return out;
 }
 
+/** @param {number} w @param {number} h @param {string} body */
+const vectorSvg = (w, h, body) => `<svg xmlns='http://www.w3.org/2000/svg' width='${w}' height='${h}' viewBox='0 0 ${w} ${h}'>${body}</svg>`;
+
 /** @param {{ink: string, paper: string}} colors */
 function declarations(colors) {
-  return Object.entries(bitmaps())
-    .map(([prop, bitmap]) => `  ${prop}: ${dataUri(svg(bitmap, colors))};`)
-    .join("\n");
+  const pixels = Object.entries(bitmaps()).map(([prop, bitmap]) => `  ${prop}: ${dataUri(svg(bitmap, colors))};`);
+  const vectors = Object.entries(VECTORS).flatMap(([name, [w, h, draw]]) => {
+    const out = [`  --s6-vector-${name}: ${dataUri(vectorSvg(w, h, draw(colors.ink, colors.paper)))};`];
+    if (PRESSED_VECTORS.includes(name)) out.push(`  --s6-vector-${name}-pressed: ${dataUri(vectorSvg(w, h, draw(colors.paper, colors.ink)))};`);
+    return out;
+  });
+  return [...pixels, ...vectors].join("\n");
 }
 
 export function build() {
