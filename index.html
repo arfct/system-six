@@ -63,11 +63,8 @@
       <p>Black-and-white 1-bit desktop components in plain CSS. Put <code>class="s6"</code> on a container and the controls inside it draw in ink and paper, at the pixel sizes of the 1980s originals.</p>
       <div class="row">
         <label class="s6-check"><input type="checkbox" id="reverse"> Reverse video</label>
-        <label class="s6-check"><input type="radio" name="scale" value="1" checked> 1×</label>
-        <label class="s6-check"><input type="radio" name="scale" value="2"> 2×</label>
-        <label class="s6-check"><input type="radio" name="scale" value="3"> 3×</label>
       </div>
-      <p class="note">One art pixel is <code>--s6-px</code> (1px). Whole multiples stay crisp.</p>
+      <p class="note" id="scale-note">Every part draws at the original's physical size: one original pixel is 1/72 inch, set as the nearest whole number of this screen's pixels.</p>
     </div>
   </section>
 
@@ -284,9 +281,16 @@ Line five.</textarea>
     root.classList.toggle("s6-reverse", e.target.checked);
     root.style.background = e.target.checked ? "#000" : "#fff";
   });
-  for (const r of document.querySelectorAll('input[name="scale"]')) {
-    r.addEventListener("change", () => root.style.setProperty("--s6-px", `${r.value}px`));
-  }
+  // report what this screen draws: a push button is 20 art pixels tall
+  const probe = document.querySelector("button.s6-default");
+  const note = document.getElementById("scale-note");
+  const show = () => {
+    const css = probe.getBoundingClientRect().height / 20;
+    const device = Math.round(css * devicePixelRatio);
+    note.textContent = `This screen (${devicePixelRatio}× density): one original pixel is ${device} screen pixel${device === 1 ? "" : "s"}, ${+css.toFixed(3)} CSS px — ${Math.round((css / (4 / 3)) * 100)}% of the original's physical size, and always crisp.`;
+  };
+  show();
+  matchMedia(`(resolution: ${devicePixelRatio}dppx)`).addEventListener("change", show);
 </script>
 </body>
 </html>

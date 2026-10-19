@@ -1,6 +1,6 @@
 # system-six
 
-Black-and-white 1-bit desktop components in plain CSS, in the spirit of 1980s paint programs and desktops: rounded push buttons with a ring around the default, checkboxes that take an X, striped title bars, menus with 1px shadows, a gray dither desktop, and 8×8 fill patterns. Every part is drawn at the pixel size of the originals and stays crisp at whole-number scales.
+Black-and-white 1-bit desktop components in plain CSS, in the spirit of 1980s paint programs and desktops: rounded push buttons with a ring around the default, checkboxes that take an X, striped title bars, menus with 1px shadows, a gray dither desktop, and 8×8 fill patterns. Every part is drawn at the pixel dimensions of the originals, at their physical size, and stays crisp on any screen.
 
 One stylesheet, no JavaScript, no build step to use it. The preview, `index.html`, shows every component and state (`npm run preview`, then open the address it prints).
 
@@ -26,7 +26,7 @@ From git: `npm install github:arfct/system-six`, then import `@arfct/system-six`
 
 ## Components
 
-| Part | Markup | Size (in `--s6-px`) |
+| Part | Markup | Size (in art pixels) |
 |---|---|---|
 | Push button | `<button>`; `.s6-default` for the one Return triggers; `.s6-bare` opts a `<button>` out | 20 tall, 58 minimum wide; the default ring is 3 thick, 1 gap, drawn 4 outside |
 | Checkbox, radio | `<label class="s6-check"><input type="checkbox"> Label</label>` | 12 × 12 |
@@ -61,9 +61,18 @@ States: `:active` presses (inverts a button, doubles a checkbox frame); `:disabl
 
 Each face draws one font pixel per CSS pixel at its design size, so text is as crisp as the frames. Classes `.s6-system`, `.s6-app`, `.s6-small`, `.s6-mono`, `.s6-mono-small` apply them.
 
-## Scale and colour
+## Size and colour
 
-- `--s6-px` is one original screen pixel: `1px` by default. Set `2px` or `3px` on the `.s6` element for double or triple size. Keep it whole, or 1px lines blur.
+- Parts draw at the originals' physical size, automatically. One original screen pixel was 1/72 inch, which is 4/3 of a CSS pixel; the stylesheet sets `--s6-px` (one art pixel) to the nearest whole number of device pixels for the display's density, so every edge stays crisp:
+
+  | Display | Art pixel | Device pixels | Of the real size |
+  |---|---|---|---|
+  | 1× | 1 CSS px | 1 | 75% |
+  | 1.5× | 1.333 CSS px | 2 | 100% |
+  | 2× | 1.5 CSS px | 3 | 112% |
+  | 3× | 1.333 CSS px | 4 | 100% |
+
+  Sizes in this README are in art pixels: a push button is 20 of them, 30 CSS px tall on a 2× screen.
 - Ink and paper are black and white. `.s6-reverse` swaps them, bitmaps included; `.s6-auto` swaps them when the system is in dark mode.
 - `--s6-dim` is the gray of a dimmed label (text can't take a dither pattern, so it's the mix of ink and paper).
 

@@ -4,8 +4,10 @@
 
 /* ---- tokens ----
    Everything lives under .s6. Sizes are the originals' pixel dimensions in
-   --s6-px units: 1px draws one original screen pixel per CSS pixel; set it
-   to 2px for double size (keep it a whole number of pixels, or edges blur). */
+   --s6-px units, one original screen pixel each. The stylesheet sets
+   --s6-px for the display: as near the original's physical size (4/3 of a
+   CSS pixel) as whole device pixels allow, so edges stay crisp. 1px is the
+   1x-screen value; the density rules after these tokens raise it. */
 .s6 {
   --s6-px: 1px;
   /* the system face: labels, buttons, menus, titles (a bold 12-point face
@@ -49,6 +51,41 @@
 .s6 input[type="file"]::file-selector-button {
   -webkit-font-smoothing: none;
   font-smooth: never;
+}
+
+/* ---- physical size: --s6-px per display density (generated) ---- */
+@media (min-resolution: 1.24dppx), (-webkit-min-device-pixel-ratio: 1.24) {
+  .s6 { --s6-px: calc(2px / 1.25); }
+}
+@media (min-resolution: 1.49dppx), (-webkit-min-device-pixel-ratio: 1.49) {
+  .s6 { --s6-px: calc(2px / 1.5); }
+}
+@media (min-resolution: 1.74dppx), (-webkit-min-device-pixel-ratio: 1.74) {
+  .s6 { --s6-px: calc(2px / 1.75); }
+}
+@media (min-resolution: 1.99dppx), (-webkit-min-device-pixel-ratio: 1.99) {
+  .s6 { --s6-px: calc(3px / 2); }
+}
+@media (min-resolution: 2.24dppx), (-webkit-min-device-pixel-ratio: 2.24) {
+  .s6 { --s6-px: calc(3px / 2.25); }
+}
+@media (min-resolution: 2.49dppx), (-webkit-min-device-pixel-ratio: 2.49) {
+  .s6 { --s6-px: calc(3px / 2.5); }
+}
+@media (min-resolution: 2.615dppx), (-webkit-min-device-pixel-ratio: 2.615) {
+  .s6 { --s6-px: calc(4px / 2.625); }
+}
+@media (min-resolution: 2.74dppx), (-webkit-min-device-pixel-ratio: 2.74) {
+  .s6 { --s6-px: calc(4px / 2.75); }
+}
+@media (min-resolution: 2.99dppx), (-webkit-min-device-pixel-ratio: 2.99) {
+  .s6 { --s6-px: calc(4px / 3); }
+}
+@media (min-resolution: 3.49dppx), (-webkit-min-device-pixel-ratio: 3.49) {
+  .s6 { --s6-px: calc(5px / 3.5); }
+}
+@media (min-resolution: 3.99dppx), (-webkit-min-device-pixel-ratio: 3.99) {
+  .s6 { --s6-px: calc(5px / 4); }
 }
 
 /* ---- bitmaps (generated from art/art.mjs by scripts/build.mjs) ---- */
