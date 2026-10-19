@@ -36,6 +36,29 @@ export function svg(bitmap, { ink, paper }) {
   return `<svg xmlns='http://www.w3.org/2000/svg' width='${w}' height='${h}' shape-rendering='crispEdges'>${paths}</svg>`;
 }
 
+// Physical size. One original screen pixel was 1/72 inch: 4/3 of a CSS
+// pixel. At each display density an art pixel is the whole number of device
+// pixels nearest that, so every edge stays crisp and parts come out as close
+// to their real size as the screen allows. Densities between these get the
+// rule for the one below them.
+export const DENSITIES = [1, 1.25, 1.5, 1.75, 2, 2.25, 2.5, 2.625, 2.75, 3, 3.5, 4];
+
+/** Device pixels per art pixel at a density, and that in CSS pixels. @param {number} dppx */
+export function artPixel(dppx) {
+  const device = Math.max(1, Math.round((dppx * 4) / 3));
+  return { device, css: device / dppx };
+}
+
+function densityRules() {
+  return DENSITIES.filter((d) => d > 1)
+    .map((d) => {
+      const { device } = artPixel(d);
+      const from = +(d - 0.01).toFixed(3);
+      return `@media (min-resolution: ${from}dppx), (-webkit-min-device-pixel-ratio: ${from}) {\n  .s6 { --s6-px: calc(${device}px / ${d}); }\n}`;
+    })
+    .join("\n");
+}
+
 /** @param {string} s */
 const dataUri = (s) => `url("data:image/svg+xml,${s.replace(/#/g, "%23").replace(/</g, "%3C").replace(/>/g, "%3E")}")`;
 
@@ -64,7 +87,10 @@ function declarations(colors) {
 export function build() {
   const normal = declarations({ ink: INK, paper: PAPER });
   const reverse = declarations({ ink: PAPER, paper: INK });
-  const generated = `/* ---- bitmaps (generated from art/art.mjs by scripts/build.mjs) ---- */
+  const generated = `/* ---- physical size: --s6-px per display density (generated) ---- */
+${densityRules()}
+
+/* ---- bitmaps (generated from art/art.mjs by scripts/build.mjs) ---- */
 .s6 {
   --s6-ink: ${INK};
   --s6-paper: ${PAPER};

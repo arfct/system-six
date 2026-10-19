@@ -1,7 +1,9 @@
 /* ---- tokens ----
    Everything lives under .s6. Sizes are the originals' pixel dimensions in
-   --s6-px units: 1px draws one original screen pixel per CSS pixel; set it
-   to 2px for double size (keep it a whole number of pixels, or edges blur). */
+   --s6-px units, one original screen pixel each. The stylesheet sets
+   --s6-px for the display: as near the original's physical size (4/3 of a
+   CSS pixel) as whole device pixels allow, so edges stay crisp. 1px is the
+   1x-screen value; the density rules after these tokens raise it. */
 .s6 {
   --s6-px: 1px;
   /* the system face: labels, buttons, menus, titles (a bold 12-point face
