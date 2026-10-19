@@ -1,0 +1,92 @@
+/* ---- text fields, text areas, pop-up menus ----
+   An edit field is a 1px frame 22px tall: the 16px line with 3px of air
+   above and below. Focus doubles the frame. A pop-up menu is a 19px box
+   with a 1px shadow and the arrow at its right. */
+.s6
+:where(
+  input:not(
+    [type="checkbox"],
+    [type="radio"],
+    [type="range"],
+    [type="button"],
+    [type="submit"],
+    [type="reset"],
+    [type="file"],
+    [type="color"],
+    [type="image"],
+    [type="hidden"]
+  ),
+  textarea
+) {
+  box-sizing: border-box;
+  appearance: none;
+  min-width: 0;
+  height: calc(22 * var(--s6-px));
+  margin: 0;
+  padding: 0 calc(3 * var(--s6-px));
+  border: var(--s6-px) solid var(--s6-ink);
+  border-radius: 0;
+  background: var(--s6-paper);
+  box-shadow: none;
+  color: var(--s6-ink);
+  font: var(--s6-font-system);
+  line-height: calc(20 * var(--s6-px));
+  outline: none;
+}
+.s6 :where(textarea) {
+  height: auto;
+  padding: calc(3 * var(--s6-px));
+  font: var(--s6-font-app);
+  resize: vertical;
+}
+.s6 :where(input, textarea):focus:not([type="checkbox"], [type="radio"], [type="range"], [type="file"]) {
+  box-shadow: inset 0 0 0 var(--s6-px) var(--s6-ink);
+}
+.s6 :where(input, textarea)::placeholder {
+  color: var(--s6-dim);
+  opacity: 1;
+}
+.s6 :where(input:not([type="checkbox"], [type="radio"], [type="range"], [type="file"]), textarea):disabled {
+  border-style: dotted;
+  color: var(--s6-dim);
+}
+/* a labelled field on one row */
+.s6 .s6-field {
+  display: flex;
+  align-items: center;
+  gap: calc(8 * var(--s6-px));
+  font: var(--s6-font-system);
+  color: var(--s6-ink);
+}
+.s6 .s6-field > :is(input, select, textarea) {
+  flex: 1;
+}
+
+/* the pop-up menu: a single-choice <select> */
+.s6 :where(select:not([multiple], [size]:not([size="1"]))) {
+  box-sizing: border-box;
+  appearance: none;
+  min-width: 0;
+  height: calc(19 * var(--s6-px));
+  margin: 0 var(--s6-px) var(--s6-px) 0;
+  padding: 0 calc(22 * var(--s6-px)) 0 calc(5 * var(--s6-px));
+  border: var(--s6-px) solid var(--s6-ink);
+  border-radius: 0;
+  background: var(--s6-paper) var(--s6-art-popup-arrow) no-repeat right calc(6 * var(--s6-px)) center / calc(11 * var(--s6-px)) calc(6 * var(--s6-px));
+  box-shadow: var(--s6-px) var(--s6-px) 0 var(--s6-ink);
+  color: var(--s6-ink);
+  font: var(--s6-font-system);
+  line-height: calc(17 * var(--s6-px));
+  cursor: default;
+}
+.s6 :where(select:not([multiple], [size]:not([size="1"]))):is(:active, .s6-pressed):not(:disabled) {
+  background-color: var(--s6-ink);
+  background-image: var(--s6-art-popup-arrow-pressed);
+  color: var(--s6-paper);
+}
+.s6 :where(select:not([multiple], [size]:not([size="1"]))):disabled {
+  background-image: var(--s6-art-popup-arrow-dim);
+  border-style: dotted;
+  box-shadow: none;
+  color: var(--s6-dim);
+}

@@ -1,0 +1,84 @@
+/* ---- push buttons ----
+   20px tall, a 1px frame with three-step corners, the label in the system
+   face. Pressed inverts. .s6-default adds the 3px ring 4px outside the
+   button (it doesn't take space: leave room for it). Add .s6-bare to a
+   <button> that is not a push button. */
+.s6
+:where(
+  button:not(.s6-bare, .s6-close, .s6-zoom, [role="tab"], [role="menuitem"], [role="menuitemcheckbox"], [role="menuitemradio"], [role="option"]),
+  .s6-button,
+  input:is([type="button"], [type="submit"], [type="reset"])
+),
+.s6 input[type="file"]::file-selector-button {
+  box-sizing: border-box;
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: calc(20 * var(--s6-px));
+  min-width: calc(58 * var(--s6-px));
+  margin: 0;
+  padding: 0 calc(10 * var(--s6-px));
+  border: 0 solid transparent;
+  border-radius: 0;
+  border-image: var(--s6-art-button) 5 fill / calc(5 * var(--s6-px));
+  background: none;
+  box-shadow: none;
+  color: var(--s6-ink);
+  font: var(--s6-font-system);
+  line-height: calc(20 * var(--s6-px));
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: default;
+  -webkit-tap-highlight-color: transparent;
+}
+.s6
+  :where(
+    button:not(.s6-bare, .s6-close, .s6-zoom, [role="tab"], [role="menuitem"], [role="menuitemcheckbox"], [role="menuitemradio"], [role="option"]),
+    .s6-button,
+    input:is([type="button"], [type="submit"], [type="reset"])
+  ):is(:active, .s6-pressed):not(:disabled, [aria-disabled="true"]),
+.s6 input[type="file"]:active:not(:disabled)::file-selector-button {
+  border-image-source: var(--s6-art-button-pressed);
+  color: var(--s6-paper);
+}
+.s6 :where(button, .s6-button, input:is([type="button"], [type="submit"], [type="reset"])).s6-default {
+  border-image: var(--s6-art-button-default) 9 fill / calc(9 * var(--s6-px)) / calc(4 * var(--s6-px));
+}
+.s6
+  :where(button, .s6-button, input:is([type="button"], [type="submit"], [type="reset"])).s6-default:is(:active, .s6-pressed):not(
+    :disabled,
+    [aria-disabled="true"]
+  ) {
+  border-image-source: var(--s6-art-button-default-pressed);
+}
+/* dimmed: a gray frame and a gray label */
+.s6
+:where(
+  button:not(.s6-bare, .s6-close, .s6-zoom, [role="tab"], [role="menuitem"], [role="menuitemcheckbox"], [role="menuitemradio"], [role="option"]),
+  .s6-button,
+  input:is([type="button"], [type="submit"], [type="reset"])
+):is(:disabled, [aria-disabled="true"]),
+.s6 input[type="file"]:disabled::file-selector-button {
+  border-image: var(--s6-art-button-dim) 5 fill / calc(5 * var(--s6-px));
+  color: var(--s6-dim);
+}
+.s6 :where(button:not(.s6-bare), .s6-button):focus-visible {
+  outline-offset: calc(-4 * var(--s6-px));
+}
+/* the file picker: the button, then the chosen name in the small face */
+.s6 input[type="file"] {
+  max-width: 100%;
+  color: var(--s6-ink);
+  font: var(--s6-font-small);
+}
+.s6 input[type="file"]::file-selector-button {
+  margin-right: calc(6 * var(--s6-px));
+}
+/* a row of buttons, right-aligned the way dialogs end */
+.s6 .s6-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: calc(12 * var(--s6-px));
+  padding: calc(4 * var(--s6-px));
+}

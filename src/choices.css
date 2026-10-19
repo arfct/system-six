@@ -1,0 +1,63 @@
+/* ---- checkboxes and radio buttons ----
+   12px boxes. Checked is an X; a radio's mark is a round dot. While the
+   pointer is down the frame doubles. Wrap one in .s6-check (a <label>)
+   for the box-then-label row. */
+.s6 :where(input[type="checkbox"], input[type="radio"]) {
+  box-sizing: border-box;
+  appearance: none;
+  flex: none;
+  width: calc(12 * var(--s6-px));
+  height: calc(12 * var(--s6-px));
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: var(--s6-art-checkbox) 0 0 / 100% 100% no-repeat;
+  box-shadow: none;
+  vertical-align: calc(-1 * var(--s6-px));
+  cursor: default;
+}
+.s6 :where(input[type="checkbox"]):checked {
+  background-image: var(--s6-art-checkbox-on);
+}
+.s6 :where(input[type="checkbox"]):is(:active, .s6-pressed):not(:disabled) {
+  background-image: var(--s6-art-checkbox-pressed);
+}
+.s6 :where(input[type="checkbox"]):checked:is(:active, .s6-pressed):not(:disabled) {
+  background-image: var(--s6-art-checkbox-on-pressed);
+}
+.s6 :where(input[type="checkbox"]):disabled {
+  background-image: var(--s6-art-checkbox-dim);
+}
+.s6 :where(input[type="checkbox"]):checked:disabled {
+  background-image: var(--s6-art-checkbox-on-dim);
+}
+.s6 :where(input[type="radio"]) {
+  background-image: var(--s6-art-radio);
+}
+.s6 :where(input[type="radio"]):checked {
+  background-image: var(--s6-art-radio-on);
+}
+.s6 :where(input[type="radio"]):is(:active, .s6-pressed):not(:disabled) {
+  background-image: var(--s6-art-radio-pressed);
+}
+.s6 :where(input[type="radio"]):checked:is(:active, .s6-pressed):not(:disabled) {
+  background-image: var(--s6-art-radio-on-pressed);
+}
+.s6 :where(input[type="radio"]):disabled {
+  background-image: var(--s6-art-radio-dim);
+}
+.s6 :where(input[type="radio"]):checked:disabled {
+  background-image: var(--s6-art-radio-on-dim);
+}
+.s6 .s6-check {
+  display: inline-flex;
+  align-items: center;
+  gap: calc(5 * var(--s6-px));
+  min-height: calc(16 * var(--s6-px));
+  color: var(--s6-ink);
+  font: var(--s6-font-system);
+}
+.s6 .s6-check:has(:disabled) {
+  color: var(--s6-dim);
+}

@@ -1,0 +1,145 @@
+/* ---- group boxes, separators, progress, sliders, patterns ---- */
+.s6 :where(fieldset, .s6-group) {
+  margin: 0;
+  padding: calc(8 * var(--s6-px)) calc(10 * var(--s6-px)) calc(10 * var(--s6-px));
+  border: var(--s6-px) solid var(--s6-ink);
+  border-radius: 0;
+  color: var(--s6-ink);
+}
+.s6 :where(fieldset) > legend {
+  padding: 0 calc(3 * var(--s6-px));
+  font: var(--s6-font-system);
+}
+/* a separator: a 1px dotted rule */
+.s6 :where(hr, .s6-rule) {
+  height: var(--s6-px);
+  margin: calc(8 * var(--s6-px)) 0;
+  border: 0;
+  background: repeating-linear-gradient(to right, var(--s6-ink) 0 var(--s6-px), transparent var(--s6-px) calc(2 * var(--s6-px)));
+}
+.s6 .s6-rule-solid {
+  background: var(--s6-ink);
+}
+
+/* progress: a 1px frame filled with ink; with no value it runs stripes */
+.s6 :where(progress) {
+  box-sizing: border-box;
+  appearance: none;
+  display: block;
+  width: 100%;
+  height: calc(12 * var(--s6-px));
+  border: var(--s6-px) solid var(--s6-ink);
+  border-radius: 0;
+  background: var(--s6-paper);
+  color: var(--s6-ink);
+}
+.s6 :where(progress)::-webkit-progress-bar {
+  background: var(--s6-paper);
+}
+.s6 :where(progress)::-webkit-progress-value {
+  background: var(--s6-ink);
+}
+.s6 :where(progress)::-moz-progress-bar {
+  background: var(--s6-ink);
+}
+.s6 :where(progress):indeterminate {
+  background: var(--s6-pattern-diagonal) 0 0 / calc(8 * var(--s6-px)) calc(8 * var(--s6-px));
+  animation: s6-barber 0.8s steps(8) infinite;
+}
+.s6 :where(progress):indeterminate::-webkit-progress-bar {
+  background: transparent;
+}
+.s6 :where(progress):indeterminate::-moz-progress-bar {
+  background: transparent;
+}
+@keyframes s6-barber {
+  to {
+    background-position: calc(8 * var(--s6-px)) 0;
+  }
+}
+
+/* a slider: a 16px scroll-bar track with a white thumb */
+.s6 :where(input[type="range"]) {
+  appearance: none;
+  height: calc(16 * var(--s6-px));
+  margin: 0;
+  background: none;
+  cursor: default;
+}
+.s6 :where(input[type="range"])::-webkit-slider-runnable-track {
+  box-sizing: border-box;
+  height: calc(16 * var(--s6-px));
+  border: var(--s6-px) solid var(--s6-ink);
+  background: var(--s6-pattern-gray) 0 0 / calc(8 * var(--s6-px)) calc(8 * var(--s6-px));
+}
+.s6 :where(input[type="range"])::-webkit-slider-thumb {
+  appearance: none;
+  box-sizing: border-box;
+  width: calc(16 * var(--s6-px));
+  height: calc(16 * var(--s6-px));
+  margin-top: calc(-1 * var(--s6-px));
+  border: var(--s6-px) solid var(--s6-ink);
+  border-radius: 0;
+  background: var(--s6-paper);
+}
+.s6 :where(input[type="range"])::-moz-range-track {
+  box-sizing: border-box;
+  height: calc(16 * var(--s6-px));
+  border: var(--s6-px) solid var(--s6-ink);
+  background: var(--s6-pattern-gray) 0 0 / calc(8 * var(--s6-px)) calc(8 * var(--s6-px));
+}
+.s6 :where(input[type="range"])::-moz-range-thumb {
+  box-sizing: border-box;
+  width: calc(16 * var(--s6-px));
+  height: calc(16 * var(--s6-px));
+  border: var(--s6-px) solid var(--s6-ink);
+  border-radius: 0;
+  background: var(--s6-paper);
+}
+
+/* fill patterns as backgrounds: 8px tiles */
+.s6
+:is(
+  .s6-fill-gray,
+  .s6-fill-light,
+  .s6-fill-dark,
+  .s6-fill-dots,
+  .s6-fill-diagonal,
+  .s6-fill-bricks,
+  .s6-fill-grid,
+  .s6-fill-zigzag,
+  .s6-fill-weave,
+  .s6-fill-scales
+) {
+  background-size: calc(8 * var(--s6-px)) calc(8 * var(--s6-px));
+}
+.s6 .s6-fill-gray {
+  background-image: var(--s6-pattern-gray);
+}
+.s6 .s6-fill-light {
+  background-image: var(--s6-pattern-light);
+}
+.s6 .s6-fill-dark {
+  background-image: var(--s6-pattern-dark);
+}
+.s6 .s6-fill-dots {
+  background-image: var(--s6-pattern-dots);
+}
+.s6 .s6-fill-diagonal {
+  background-image: var(--s6-pattern-diagonal);
+}
+.s6 .s6-fill-bricks {
+  background-image: var(--s6-pattern-bricks);
+}
+.s6 .s6-fill-grid {
+  background-image: var(--s6-pattern-grid);
+}
+.s6 .s6-fill-zigzag {
+  background-image: var(--s6-pattern-zigzag);
+}
+.s6 .s6-fill-weave {
+  background-image: var(--s6-pattern-weave);
+}
+.s6 .s6-fill-scales {
+  background-image: var(--s6-pattern-scales);
+}

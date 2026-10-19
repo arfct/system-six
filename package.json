@@ -1,0 +1,29 @@
+{
+  "name": "@arfct/system-six",
+  "version": "0.1.0",
+  "description": "Black-and-white 1-bit desktop UI components in plain CSS: push buttons, checkboxes, fields, menus, windows, dialogs, tabs, and fill patterns, at the pixel sizes of the 1980s originals.",
+  "license": "MIT",
+  "type": "module",
+  "repository": "github:arfct/system-six",
+  "homepage": "https://github.com/arfct/system-six",
+  "files": [
+    "system-six.css",
+    "fonts",
+    "README.md",
+    "LICENSE"
+  ],
+  "exports": {
+    ".": "./system-six.css",
+    "./fonts.css": "./fonts/fonts.css"
+  },
+  "style": "system-six.css",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "preview": "node scripts/serve.mjs",
+    "test": "node --test",
+    "lint": "biome check ."
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.5.15"
+  }
+}

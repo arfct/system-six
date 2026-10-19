@@ -1,0 +1,21 @@
+/* ---- tokens ----
+   Everything lives under .s6. Sizes are the originals' pixel dimensions in
+   --s6-px units: 1px draws one original screen pixel per CSS pixel; set it
+   to 2px for double size (keep it a whole number of pixels, or edges blur). */
+.s6 {
+  --s6-px: 1px;
+  /* the system face: labels, buttons, menus, titles (a bold 12-point face
+     with 2px stems on a 16px line) */
+  --s6-font-system: 700 calc(16 * var(--s6-px)) / calc(16 * var(--s6-px)) "Pixel Operator", monospace;
+  /* the application face: body text, lists */
+  --s6-font-app: 400 calc(16 * var(--s6-px)) / calc(16 * var(--s6-px)) "Pixel Operator", monospace;
+  /* the small face: captions, status lines (a 9-point face) */
+  --s6-font-small: 400 calc(8 * var(--s6-px)) / calc(10 * var(--s6-px)) "Pixel Operator 8", monospace;
+  --s6-font-mono: 400 calc(16 * var(--s6-px)) / calc(16 * var(--s6-px)) "Pixel Operator Mono", monospace;
+  --s6-font-mono-small: 400 calc(8 * var(--s6-px)) / calc(10 * var(--s6-px)) "Pixel Operator Mono 8", monospace;
+  /* a dimmed label: 1-bit screens drew it in a gray pattern; text can only
+     take a colour, so it is the mix */
+  --s6-dim: color-mix(in srgb, var(--s6-ink) 50%, var(--s6-paper));
+  -webkit-font-smoothing: none;
+  font-smooth: never;
+}

@@ -1,0 +1,94 @@
+/* ---- menu bar and menus ----
+   The bar is 20px with a 1px rule under it. A menu is a 1px frame with a
+   1px shadow; items are 16px rows in the system face, inverted while
+   chosen. A separator is a full row with a dotted line through it. */
+.s6 .s6-menubar {
+  box-sizing: border-box;
+  display: flex;
+  align-items: stretch;
+  height: calc(20 * var(--s6-px));
+  margin: 0;
+  padding: 0 calc(6 * var(--s6-px));
+  border-bottom: var(--s6-px) solid var(--s6-ink);
+  background: var(--s6-paper);
+  color: var(--s6-ink);
+  font: var(--s6-font-system);
+  list-style: none;
+}
+.s6 .s6-menubar > * {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 0 calc(9 * var(--s6-px));
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  cursor: default;
+}
+.s6 .s6-menubar > :is([aria-expanded="true"], .s6-open, :active) {
+  background: var(--s6-ink);
+  color: var(--s6-paper);
+}
+.s6 .s6-menu {
+  box-sizing: border-box;
+  display: inline-flex;
+  flex-direction: column;
+  min-width: calc(120 * var(--s6-px));
+  margin: 0;
+  padding: 0;
+  border: var(--s6-px) solid var(--s6-ink);
+  background: var(--s6-paper);
+  box-shadow: var(--s6-px) var(--s6-px) 0 var(--s6-ink);
+  color: var(--s6-ink);
+  font: var(--s6-font-system);
+  list-style: none;
+}
+.s6 .s6-menu > :is([role^="menuitem"], li, button, a) {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: calc(16 * var(--s6-px));
+  height: calc(16 * var(--s6-px));
+  margin: 0;
+  padding: 0 calc(12 * var(--s6-px)) 0 calc(16 * var(--s6-px));
+  border: 0;
+  background: none no-repeat calc(4 * var(--s6-px)) calc(4 * var(--s6-px)) / calc(8 * var(--s6-px)) calc(7 * var(--s6-px));
+  color: inherit;
+  font: inherit;
+  line-height: calc(16 * var(--s6-px));
+  text-align: left;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: default;
+}
+.s6
+  .s6-menu
+  > :is([role^="menuitem"], li, button, a):is(:hover, :focus-visible, .s6-chosen):not([aria-disabled="true"], :disabled, .s6-separator, [role="separator"]) {
+  background-color: var(--s6-ink);
+  color: var(--s6-paper);
+  outline: none;
+}
+.s6 .s6-menu > [aria-checked="true"] {
+  background-image: var(--s6-art-check);
+}
+.s6 .s6-menu > [aria-checked="true"]:is(:hover, :focus-visible, .s6-chosen):not([aria-disabled="true"], :disabled) {
+  background-image: var(--s6-art-check-pressed);
+}
+.s6 .s6-menu > :is([aria-disabled="true"], :disabled) {
+  color: var(--s6-dim);
+}
+/* the shortcut, at the right edge of its row */
+.s6 .s6-menu kbd {
+  margin-left: auto;
+  font: inherit;
+}
+.s6 .s6-menu > :is(.s6-separator, [role="separator"], hr) {
+  height: calc(16 * var(--s6-px));
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background:
+    repeating-linear-gradient(to right, var(--s6-ink) 0 var(--s6-px), transparent var(--s6-px) calc(2 * var(--s6-px))) 0 calc(7 * var(--s6-px)) / 100%
+    var(--s6-px) no-repeat;
+}

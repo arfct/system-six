@@ -1,0 +1,98 @@
+/* ---- list boxes and scroll bars ----
+   A list is a 1px frame of 16px rows; the chosen row inverts. Scroll bars
+   are 16px: a gray track, a white thumb, and an arrow box at each end
+   (Chromium and Safari draw these; Firefox gets plain black and white). */
+.s6 :where(.s6-list, select[multiple], select[size]:not([size="1"])) {
+  box-sizing: border-box;
+  display: block;
+  margin: 0;
+  padding: 0;
+  overflow: auto;
+  border: var(--s6-px) solid var(--s6-ink);
+  border-radius: 0;
+  background: var(--s6-paper);
+  color: var(--s6-ink);
+  font: var(--s6-font-app);
+  list-style: none;
+  outline: none;
+}
+.s6 :where(.s6-list) > *,
+.s6 :where(select[multiple], select[size]:not([size="1"])) option {
+  box-sizing: border-box;
+  height: calc(16 * var(--s6-px));
+  padding: 0 calc(4 * var(--s6-px));
+  line-height: calc(16 * var(--s6-px));
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: default;
+}
+.s6 :where(.s6-list) > :is([aria-selected="true"], .s6-chosen),
+.s6 :where(select[multiple], select[size]:not([size="1"])) option:checked {
+  background: var(--s6-ink) linear-gradient(var(--s6-ink), var(--s6-ink));
+  color: var(--s6-paper);
+}
+.s6 :where(.s6-list) > [aria-disabled="true"] {
+  color: var(--s6-dim);
+}
+
+.s6 :where(.s6-scroll, .s6-list, textarea, select[multiple], select[size]:not([size="1"]))::-webkit-scrollbar {
+  width: calc(16 * var(--s6-px));
+  height: calc(16 * var(--s6-px));
+  background: var(--s6-paper);
+}
+.s6 :where(.s6-scroll, .s6-list, textarea, select[multiple], select[size]:not([size="1"]))::-webkit-scrollbar-track {
+  background: var(--s6-pattern-gray) 0 0 / calc(8 * var(--s6-px)) calc(8 * var(--s6-px));
+}
+.s6 :where(.s6-scroll, .s6-list, textarea, select[multiple], select[size]:not([size="1"]))::-webkit-scrollbar-track:vertical {
+  border-left: var(--s6-px) solid var(--s6-ink);
+}
+.s6 :where(.s6-scroll, .s6-list, textarea, select[multiple], select[size]:not([size="1"]))::-webkit-scrollbar-track:horizontal {
+  border-top: var(--s6-px) solid var(--s6-ink);
+}
+.s6 :where(.s6-scroll, .s6-list, textarea, select[multiple], select[size]:not([size="1"]))::-webkit-scrollbar-thumb {
+  min-height: calc(16 * var(--s6-px));
+  min-width: calc(16 * var(--s6-px));
+  border: var(--s6-px) solid var(--s6-ink);
+  background: var(--s6-paper);
+}
+.s6 :where(.s6-scroll, .s6-list, textarea, select[multiple], select[size]:not([size="1"]))::-webkit-scrollbar-button:single-button {
+  display: block;
+  width: calc(16 * var(--s6-px));
+  height: calc(16 * var(--s6-px));
+  border: 0 solid var(--s6-ink);
+  background: var(--s6-paper) no-repeat center;
+}
+.s6 :where(.s6-scroll, .s6-list, textarea, select[multiple], select[size]:not([size="1"]))::-webkit-scrollbar-button:single-button:vertical:decrement {
+  border-width: 0 0 var(--s6-px) var(--s6-px);
+  background-image: var(--s6-art-arrow-up);
+  background-size: calc(11 * var(--s6-px)) calc(9 * var(--s6-px));
+}
+.s6 :where(.s6-scroll, .s6-list, textarea, select[multiple], select[size]:not([size="1"]))::-webkit-scrollbar-button:single-button:vertical:increment {
+  border-width: var(--s6-px) 0 0 var(--s6-px);
+  background-image: var(--s6-art-arrow-down);
+  background-size: calc(11 * var(--s6-px)) calc(9 * var(--s6-px));
+}
+.s6 :where(.s6-scroll, .s6-list, textarea, select[multiple], select[size]:not([size="1"]))::-webkit-scrollbar-button:single-button:horizontal:decrement {
+  border-width: var(--s6-px) var(--s6-px) 0 0;
+  background-image: var(--s6-art-arrow-left);
+  background-size: calc(9 * var(--s6-px)) calc(11 * var(--s6-px));
+}
+.s6 :where(.s6-scroll, .s6-list, textarea, select[multiple], select[size]:not([size="1"]))::-webkit-scrollbar-button:single-button:horizontal:increment {
+  border-width: var(--s6-px) 0 0 var(--s6-px);
+  background-image: var(--s6-art-arrow-right);
+  background-size: calc(9 * var(--s6-px)) calc(11 * var(--s6-px));
+}
+.s6 :where(.s6-scroll, .s6-list, textarea, select[multiple], select[size]:not([size="1"]))::-webkit-scrollbar-button:single-button:active {
+  background-color: var(--s6-ink);
+}
+.s6 :where(.s6-scroll, .s6-list, textarea, select[multiple], select[size]:not([size="1"]))::-webkit-scrollbar-corner {
+  border: solid var(--s6-ink);
+  border-width: var(--s6-px) 0 0 var(--s6-px);
+  background: var(--s6-paper);
+}
+@supports not selector(::-webkit-scrollbar) {
+  .s6 :where(.s6-scroll, .s6-list, textarea, select[multiple], select[size]:not([size="1"])) {
+    scrollbar-color: var(--s6-ink) var(--s6-paper);
+  }
+}
