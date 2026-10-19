@@ -20,6 +20,33 @@
   /* a dimmed label: 1-bit screens drew it in a gray pattern; text can only
      take a colour, so it is the mix */
   --s6-dim: color-mix(in srgb, var(--s6-ink) 50%, var(--s6-paper));
+}
+/* the pixel faces draw crisp only unsmoothed: turn smoothing off where
+   they are used, and leave the rest of the page's text alone */
+.s6
+:where(
+  button,
+  input,
+  select,
+  textarea,
+  progress,
+  fieldset > legend,
+  .s6-tabs,
+  .s6-menubar,
+  .s6-menu,
+  .s6-list,
+  .s6-titlebar,
+  .s6-check,
+  .s6-field,
+  .s6-dialog,
+  .s6-buttons,
+  .s6-system,
+  .s6-app,
+  .s6-small,
+  .s6-mono,
+  .s6-mono-small
+),
+.s6 input[type="file"]::file-selector-button {
   -webkit-font-smoothing: none;
   font-smooth: never;
 }
@@ -206,9 +233,6 @@
 .s6 :focus-visible {
   outline: var(--s6-px) dotted var(--s6-ink);
   outline-offset: var(--s6-px);
-}
-.s6 :where(code, kbd, samp) {
-  font: var(--s6-font-mono);
 }
 
 /* ---- push buttons ----

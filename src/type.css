@@ -22,6 +22,3 @@
   outline: var(--s6-px) dotted var(--s6-ink);
   outline-offset: var(--s6-px);
 }
-.s6 :where(code, kbd, samp) {
-  font: var(--s6-font-mono);
-}
