@@ -61,6 +61,13 @@ States: `:active` presses (inverts a button, doubles a checkbox frame); `:disabl
 
 Each face draws one font pixel per CSS pixel at its design size, so text is as crisp as the frames. Classes `.s6-system`, `.s6-app`, `.s6-small`, `.s6-mono`, `.s6-mono-small` apply them.
 
+## Sharp and smooth
+
+Two variants share every size, stroke, frame, and shadow:
+
+- **Sharp** (the default) draws controls as pixel art: stair-stepped corners, dithered dimming, the bundled pixel faces.
+- **Smooth** (add `s6-smooth` to the `.s6` element or an ancestor) draws the same one-pixel strokes and solid offset shadows as vectors, with squircle corners (`corner-shape: squircle`; a plain radius where a browser lacks it), vector glyphs, and the system sans at the classic 12-point size.
+
 ## Size and colour
 
 - Parts draw at the originals' physical size, automatically. One original screen pixel was 1/72 inch, which is 4/3 of a CSS pixel; the stylesheet sets `--s6-px` (one art pixel) to the nearest whole number of device pixels for the display's density, so every edge stays crisp:
