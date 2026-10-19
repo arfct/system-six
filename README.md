@@ -32,7 +32,7 @@ From git: `npm install github:arfct/system-six`, then import `@arfct/system-six`
 | Checkbox, radio | `<label class="s6-check"><input type="checkbox"> Label</label>` | 12 × 12 |
 | Edit field | `<input type="text">`, `<label class="s6-field">` for label and field on one row | 22 tall: 1 frame, 2 air, 16 line, 2 air, 1 frame |
 | Text area | `<textarea>` | 16px lines, 3 padding |
-| Pop-up menu | `<select>` | 19 tall plus a 1px shadow; arrow 11 × 6 |
+| Pop-up menu | `<select>` | 22 tall, like an edit field, plus a 1px shadow outside; arrow 11 × 6 |
 | List box | `<ul class="s6-list">` with `aria-selected="true"` on the chosen row, or `<select multiple>` | 16px rows |
 | Menu bar | `<nav class="s6-menubar">` of `<button class="s6-bare">`; `aria-expanded="true"` on the open title | 20 tall |
 | Menu | `<div class="s6-menu" role="menu">` of `role="menuitem"` buttons; `aria-checked`, `aria-disabled`, `<kbd>` for the shortcut, `role="separator"` | 16px rows, 1px shadow |
