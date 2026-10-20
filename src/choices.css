@@ -58,6 +58,3 @@
   color: var(--s6-ink);
   font: var(--s6-font-system);
 }
-.s6 .s6-check:has(:disabled) {
-  color: var(--s6-dim);
-}

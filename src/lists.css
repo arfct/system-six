@@ -32,9 +32,6 @@
   background: var(--s6-ink) linear-gradient(var(--s6-ink), var(--s6-ink));
   color: var(--s6-paper);
 }
-.s6 :where(.s6-list) > [aria-disabled="true"] {
-  color: var(--s6-dim);
-}
 
 .s6 :where(.s6-scroll, .s6-list, textarea, select[multiple], select[size]:not([size="1"]))::-webkit-scrollbar {
   width: calc(16 * var(--s6-px));

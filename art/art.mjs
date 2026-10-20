@@ -274,6 +274,14 @@ export const grow = rows(`
 ...............
 `);
 
+// The dimming screen: paper on every other pixel, clear between. Laid over
+// a control, it clears half its ink in a checkerboard, as a 1-bit screen
+// dimmed things (there was no gray).
+export const dither = rows(`
+o.
+.o
+`);
+
 // ---- fill patterns: 8x8 tiles ----
 
 /** @param {string} line @param {number} [times] */
@@ -294,7 +302,7 @@ export const patterns = {
 
 // Controls with a disabled state get a dimmed copy: every other ink pixel
 // in a checkerboard turns to paper, the gray a dimmed control was drawn in.
-export const dimmable = { checkbox, checkboxOn, radio, radioOn, tab, tabSelected, popupArrow, arrowUp, arrowDown, arrowLeft, arrowRight };
+export const dimmable = { checkbox, checkboxOn, radio, radioOn, popupArrow, arrowUp, arrowDown, arrowLeft, arrowRight };
 
 /** @param {string[]} art */
 export function dim(art) {

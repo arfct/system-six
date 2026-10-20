@@ -327,3 +327,27 @@
 :is(.s6.s6-smooth, .s6-smooth .s6) :where(input[type="range"])::-moz-range-thumb {
   border-radius: var(--s6-r-box);
 }
+
+/* smooth dims with gray, not the 1-bit screen */
+:is(.s6.s6-smooth, .s6-smooth .s6)
+:where(
+  button:not(.s6-bare, .s6-close, .s6-zoom):is(:disabled, [aria-disabled="true"]),
+  .s6-button[aria-disabled="true"],
+  .s6-menu > :is([aria-disabled="true"], :disabled),
+  .s6-list > [aria-disabled="true"],
+  .s6-check:has(:disabled)
+)::after {
+  content: none;
+}
+:is(.s6.s6-smooth, .s6-smooth .s6)
+  :where(
+    .s6-tabs [role="tab"]:is(:disabled, [aria-disabled="true"]),
+    .s6-menu > :is([aria-disabled="true"], :disabled),
+    .s6-list > [aria-disabled="true"],
+    .s6-check:has(:disabled),
+    input:not([type="checkbox"], [type="radio"], [type="range"], [type="file"]):disabled,
+    textarea:disabled,
+    select:disabled
+  ) {
+  color: var(--s6-dim);
+}

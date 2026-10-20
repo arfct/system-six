@@ -75,9 +75,6 @@
 .s6 .s6-menu > [aria-checked="true"]:is(:hover, :focus-visible, .s6-chosen):not([aria-disabled="true"], :disabled) {
   background-image: var(--s6-art-check-pressed);
 }
-.s6 .s6-menu > :is([aria-disabled="true"], :disabled) {
-  color: var(--s6-dim);
-}
 /* the shortcut, at the right edge of its row */
 .s6 .s6-menu kbd {
   margin-left: auto;
