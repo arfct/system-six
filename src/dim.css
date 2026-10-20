@@ -1,0 +1,52 @@
+/* ---- dimming ----
+   A 1-bit screen had no gray. A dimmed control was drawn as usual, then a
+   checkerboard of paper was laid over it, clearing every other pixel of
+   its frame and label alike. That is what this does, with --s6-art-dither
+   over anything that can carry a ::after: push buttons, tabs, menu items,
+   list rows, and a checkbox or radio with its label. Fields and pop-ups
+   can't, so they take a dotted frame (fields.css). */
+.s6
+:where(
+  button:not(.s6-bare, .s6-close, .s6-zoom):is(:disabled, [aria-disabled="true"]),
+  .s6-button[aria-disabled="true"],
+  .s6-menu > :is([aria-disabled="true"], :disabled),
+  .s6-list > [aria-disabled="true"],
+  .s6-check:has(:disabled)
+) {
+  position: relative;
+}
+.s6
+  :where(
+    button:not(.s6-bare, .s6-close, .s6-zoom):is(:disabled, [aria-disabled="true"]),
+    .s6-button[aria-disabled="true"],
+    .s6-menu > :is([aria-disabled="true"], :disabled),
+    .s6-list > [aria-disabled="true"],
+    .s6-check:has(:disabled)
+  )::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--s6-art-dither) 0 0 / calc(2 * var(--s6-px)) calc(2 * var(--s6-px));
+  pointer-events: none;
+}
+/* keep the screen inside a push button's rounded corners */
+.s6
+:where(
+  button:not(.s6-bare, .s6-close, .s6-zoom, [role="tab"], [role="menuitem"], [role="menuitemcheckbox"], [role="menuitemradio"], [role="option"]),
+  .s6-button
+):is(:disabled, [aria-disabled="true"])::after {
+  clip-path: inset(0 round calc(4 * var(--s6-px)));
+}
+/* a box inside a dimmed label is drawn plainly: the label's screen dims it */
+.s6 .s6-check :where(input[type="checkbox"]):disabled {
+  background-image: var(--s6-art-checkbox);
+}
+.s6 .s6-check :where(input[type="checkbox"]):checked:disabled {
+  background-image: var(--s6-art-checkbox-on);
+}
+.s6 .s6-check :where(input[type="radio"]):disabled {
+  background-image: var(--s6-art-radio);
+}
+.s6 .s6-check :where(input[type="radio"]):checked:disabled {
+  background-image: var(--s6-art-radio-on);
+}

@@ -52,8 +52,8 @@
   ) {
   border-image-source: var(--s6-art-button-default-pressed);
 }
-/* dimmed: the frame stays solid and only the label goes gray, as a dimmed
-   button was drawn; a disabled default button loses its ring */
+/* dimmed: drawn plainly (a disabled default button loses its ring), then
+   dim.css lays the checkerboard over frame and label alike */
 .s6
 :where(
   button:not(.s6-bare, .s6-close, .s6-zoom, [role="tab"], [role="menuitem"], [role="menuitemcheckbox"], [role="menuitemradio"], [role="option"]),
@@ -62,7 +62,6 @@
 ):is(:disabled, [aria-disabled="true"]),
 .s6 input[type="file"]:disabled::file-selector-button {
   border-image: var(--s6-art-button) 5 fill / calc(5 * var(--s6-px));
-  color: var(--s6-dim);
 }
 .s6 :where(button:not(.s6-bare), .s6-button):focus-visible {
   outline-offset: calc(-4 * var(--s6-px));

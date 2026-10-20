@@ -48,8 +48,7 @@
   opacity: 1;
 }
 .s6 :where(input:not([type="checkbox"], [type="radio"], [type="range"], [type="file"]), textarea):disabled {
-  border-style: dotted;
-  color: var(--s6-dim);
+  border-style: dotted; /* every other pixel: a field can't carry the overlay */
 }
 /* a labelled field on one row */
 .s6 .s6-field {
@@ -89,5 +88,4 @@
   background-image: var(--s6-art-popup-arrow-dim);
   border-style: dotted;
   box-shadow: none;
-  color: var(--s6-dim);
 }

@@ -36,10 +36,6 @@
   border-image-source: var(--s6-art-tab-selected);
   line-height: calc(19 * var(--s6-px));
 }
-.s6 .s6-tabs [role="tab"]:is(:disabled, [aria-disabled="true"]) {
-  border-image-source: var(--s6-art-tab-dim);
-  color: var(--s6-dim);
-}
 .s6 .s6-tabs [role="tab"]:focus-visible {
   outline-offset: calc(-3 * var(--s6-px));
 }

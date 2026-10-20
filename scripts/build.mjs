@@ -19,6 +19,7 @@ const SOURCES = [
   "tabs.css",
   "windows.css",
   "misc.css",
+  "dim.css",
   "smooth.css",
 ];
 
