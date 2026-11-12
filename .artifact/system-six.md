@@ -2,17 +2,17 @@
 title: System Six
 date: 2026-10
 category: system
-tags: [web]
+tags: [web, design]
 url: https://arfct.github.io/system-six/
 links:
   source: https://github.com/arfct/system-six
 media:
-  - src: windows.png
-    caption: The foot of the preview page on a 2× screen, with an active and an inactive window, a save dialog and an alert on the gray desktop
-    alt: Black-and-white pixel-art windows on a gray dithered background, one with a striped title bar reading Untitled, one plain titled Inactive, a dialog with Cancel and a ringed Save button, and an alert with Cancel and a ringed Revert button
   - src: components.png
-    caption: The head of the same page, with the five type styles, the ten fill patterns and the push buttons in each state
+    caption: The head of the preview page on a 2× screen, with the five type styles, the ten fill patterns and the push buttons in each state
     alt: A menu bar and four pixel-art windows titled System Six, Type, Patterns and Push buttons, showing sample sentences, ten small patterned swatches and a row of rounded buttons, one inverted and one dimmed
+  - src: windows.png
+    caption: The foot of the same page, with an active and an inactive window, a save dialog and an alert on the grey desktop
+    alt: Black-and-white pixel-art windows on a grey dithered background, one with a striped title bar reading Untitled, one plain titled Inactive, a dialog with Cancel and a ringed Save button, and an alert with Cancel and a ringed Revert button
   - src: smooth-dark.png
     caption: The smooth variant in dark mode, where the strokes are vectors and the bitmaps are inverted
     alt: The same page in white on black, with smooth sans-serif type, rounded window corners and the pattern swatches in inverted tones
