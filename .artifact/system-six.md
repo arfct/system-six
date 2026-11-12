@@ -1,6 +1,7 @@
 ---
 title: System Six
 date: 2026-10
+status: beta
 category: system
 tags: [web, design]
 url: https://arfct.github.io/system-six/
@@ -16,7 +17,7 @@ media:
   - src: smooth-dark.png
     caption: The smooth variant in dark mode, where the strokes are vectors and the bitmaps are inverted
     alt: The same page in white on black, with smooth sans-serif type, rounded window corners and the pattern swatches in inverted tones
-unconfirmed: [date]
+unconfirmed: [date, status]
 ---
 
 One CSS file holds all of System Six, a set of 1-bit desktop components modelled on the black-and-white desktops and paint programs of the 1980s. Each part keeps the pixel dimensions of its original, so a push button is 20 pixels tall. An original screen pixel was 1/72 of an inch, and the stylesheet sets one art pixel to the nearest whole number of device pixels for the display's density. On a 2× screen, as in the images, that is three device pixels, which puts the button at 112% of its original size and keeps every edge sharp.
